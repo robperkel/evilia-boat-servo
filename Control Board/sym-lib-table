@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "Control Board Parts")(type "KiCad")(uri "${KIPRJMOD}/Control Board Parts.kicad_sym")(options "")(descr ""))
+)

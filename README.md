@@ -7,7 +7,7 @@ This repository contains the documentation, hardware files, and firmware used fo
 
 This bare metal I<sup>2</sup>C driver was used as a code base: https://github.com/microchip-pic-avr-examples/pic18f56q71-bare-metal-i2c-mplab 
 
-**Per the license agreement in this code, this code can ONLY be used with Microchip products.**
+**Per the license agreement in this code, the firmware can ONLY be used with Microchip products.**
 
 ## Design Objectives
 
@@ -20,11 +20,17 @@ This bare metal I<sup>2</sup>C driver was used as a code base: https://github.co
 
 1. 3.3V logic interface
 2. 12V, 500mA motor control (ON/OFF)
+3. 50 Hz Servo Frequency
 
 ### Pinout
 
-| Function | Pin Number | I/O Pin
+Microcontroller: PIC18F1xQ41
+(PIC18F14Q41 / PIC18F15Q41 / PIC18F16Q41)
+
+| Function | I/O Pin | Pin Number
 | -------- | ---------- | --------
+| VDD (3.3V) |
+| VSS |
 | Servo 1 | 
 | Servo 2 |
 | Servo 3 |
@@ -33,44 +39,14 @@ This bare metal I<sup>2</sup>C driver was used as a code base: https://github.co
 | Servo 6 |
 | Motor | 
 | LED0 |
-| LED1 |
-| LED2 |
-| LED3 |
+| VBAT Sense |
+| Analog In |
+| INTn |
 | ICSPDAT |
 | ICSPCLK |
 | MCLR | 
 
-### "Output" Register Mapping
-
-| Bit Position | Function 
-| ------------ | --------
-| 7 | Motor
-| 6 | X
-| 5 | X
-| 4 | LED4
-| 3 | LED3
-| 2 | LED2
-| 1 | LED1
-| 0 | LED0
-
-Note: "X" values are unused.
-
-## I<sup>2</sup>C Communication
-
-### I<sup>2</sup>C Parameters
-
-- Frequency: 100 kHz  
-- 7-bit Address: TBD
-
-### Structure
-
-I<sup>2</sup>C communication uses the following structure:
-
-I<sup>2</sup>C ADDR &rarr; Reg. ADDR &rarr; Data 0 &rarr; Data 1 &rarr; ... &rarr; Data N
-
-The "register address" (Reg. ADDR) selects which setting to change. After this, each successive byte is loaded in sequential order. The register address is incremented after each byte.
-
-### Register Map
+## Register Map
 
 | Address | Register Name | Description
 | ------- | ------------- | -----------
@@ -86,23 +62,84 @@ The "register address" (Reg. ADDR) selects which setting to change. After this, 
 | 0x09    | DC5L | Duty Cycle of PWM5, Low Byte
 | 0x0A    | DC6H | Duty Cycle of PWM6, High Byte
 | 0x0B    | DC6L | Duty Cycle of PWM6, Low Byte
-| 0x0C    | Output | Sets the output register (overwrites current value)
-| 0x10    | Output Set | Sets the output bits (does NOT clear)
-| 0x12    | Output Clear | Clears the output bits (does NOT set)
-| 0x14    | Output Toggle | Toggles the output bits (does NOT clear)
-| 0x20    | FRQ1H | Frequency of PWM1/2, High Byte
-| 0x21    | FRQ1L | Frequency of PWM1/2, Low Byte
-| 0x22    | FRQ2H | Frequency of PWM3/4, High Byte
-| 0x23    | FRQ2L | Frequency of PWM3/4, Low Byte
-| 0x24    | FRQ3H | Frequency of PWM5/6, High Byte
-| 0x25    | FRQ3L | Frequency of PWM5/6, Low Byte
+| 0x0C    | Output Control | Sets the output register (overwrites current value)
+| 0x10    | FRQ1H | Frequency of PWM1/2, High Byte
+| 0x11    | FRQ1L | Frequency of PWM1/2, Low Byte
+| 0x12    | FRQ2H | Frequency of PWM3/4, High Byte
+| 0x13    | FRQ2L | Frequency of PWM3/4, Low Byte
+| 0x14    | FRQ3H | Frequency of PWM5/6, High Byte
+| 0x15    | FRQ3L | Frequency of PWM5/6, Low Byte
+| 0x20    | Analog Configure | Configures the ADC
+| 0x21    | Analog Run | Selects the input to sample 
+| 0x21    | ADCH | ADC Measurement, High Byte
+| 0x22    | ADCL | ADC Measurement, Low Byte
 
-#### Notes
+
+### Notes
 
 1. Each PWM is used to control each servo. 
 2. PWM is only updated on the low byte.
 3. See "OUTPUT Register Mapping" for bitmapping of this byte.
-4. The PWM frequencies are kept at a different offset to reduce the chance of accidently modifying these values. 
+4. Output / PWM frequencies are kept at different offsets to reduce the chance of accidently modifying these values. 
+5. PWM frequency is shared between paired outputs.
+
+### "Output" Register Mapping
+
+| Bit Position | Function 
+| ------------ | --------
+| 7 | Motor
+| 6:1 | X
+| 0 | LED0
+
+Note: "X" values are reserved.
+
+### Analog Configure Register Mapping
+
+| Bit Position | Function 
+| ------------ | --------
+| 7:4 | Voltage Reference Select
+| 3:0 | Number of Samples to Average
+
+Note: "X" values are reserved.
+
+### Analog Run Register Mapping
+
+| Bit Position | Function 
+| ------------ | --------
+| 7 | VBAT
+| 6:1 | X
+| 0 | Input 0
+
+Note: "X" values are reserved.
+
+## Digital Control
+
+### I<sup>2</sup>C Parameters
+
+- Frequency: 100 kHz  
+- 7-bit Address: TBD
+
+### I<sup>2</sup>C Communication
+
+### Writing To
+
+The "register address" (Reg. ADDR) selects which setting to change. After this, each data byte is loaded into the next sequential register. 
+
+(Start) &rarr; I<sup>2</sup>C ADDR (W) &rarr; Reg. ADDR &rarr; Data 0 &rarr; Data 1 &rarr; ... &rarr; Data N &rarr; (Stop)
+
+### Reading From
+
+To read from the device, address the microcontroller (write) and send the starting register address. Then, restart communication and address the microcontroller (read). Each byte is read in order from the registers.
+
+(Start) &rarr; I<sup>2</sup>C ADDR (W) &rarr; Reg. ADDR &rarr; (Restart) &rarr; I<sup>2</sup>C ADDR (R) &rarr; Data 0 &rarr; Data 1 &rarr; ... &rarr; Data N &rarr; (Stop)
+
+### Power on Restart (PoR) Behavior
+
+On PoR, the microcontroller sets all duty cycles to 0%, PWM frequencies to 50 Hz, and turns off the LEDs and motor. 
+
+## Analog Control
+
+
 
 ## Usage from Raspberry Pi
 
