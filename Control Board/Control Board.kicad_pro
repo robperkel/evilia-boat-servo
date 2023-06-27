@@ -34,9 +34,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 0.762,
-          "height": 1.524,
-          "width": 1.524
+          "drill": 2.7,
+          "height": 4.7,
+          "width": 4.7
         },
         "silk_line_width": 0.15,
         "silk_text_italic": false,
@@ -388,7 +388,10 @@
     }
   },
   "libraries": {
-    "pinned_footprint_libs": [],
+    "pinned_footprint_libs": [
+      "Connector_Adafruit_Custom",
+      "Control Board Custom"
+    ],
     "pinned_symbol_libs": [
       "Microchip",
       "Control Board Parts"

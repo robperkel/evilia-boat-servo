@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "Control Board Custom")(type "KiCad")(uri "${KIPRJMOD}/Control Board Custom.pretty")(options "")(descr ""))
+)
