@@ -6,8 +6,10 @@
 
   (title_block
     (title "Servo Control Board")
-    (date "2023-06-18")
+    (date "2023-06-29")
     (rev "A1")
+    (company "Designed by: Robert Perkel")
+    (comment 1 "https://github.com/robperkel/evilia-boat-servo")
   )
 
   (lib_symbols
@@ -4673,7 +4675,7 @@
     (property "Footprint" "Control Board Custom:BCH-381H-2GN" (at 187.96 35.56 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "https://www.on-shore.com/wp-content/uploads/OSTYK221XX030.pdf" (at 187.96 35.56 0)
+    (property "Datasheet" "https://www.phoenixcontact.com/en-us/products/pcb-header-bch-381h-2-gn-5444262" (at 187.96 35.56 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid 527a73f8-dd61-49f3-90de-b2a6d8b9a1e7))
@@ -5434,7 +5436,7 @@
     (property "Footprint" "Control Board Custom:BCH-381H-2GN" (at 196.85 128.27 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "https://www.on-shore.com/wp-content/uploads/OSTYK221XX030.pdf" (at 196.85 128.27 0)
+    (property "Datasheet" "https://www.phoenixcontact.com/en-us/products/pcb-header-bch-381h-2-gn-5444262" (at 196.85 128.27 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid 62ac5bf8-5ed1-4cf0-b3cb-df9adac9f213))
@@ -6491,7 +6493,7 @@
     (property "Footprint" "Control Board Custom:BCH-381H-2GN" (at 262.89 128.27 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "https://www.on-shore.com/wp-content/uploads/OSTYK221XX030.pdf" (at 262.89 128.27 0)
+    (property "Datasheet" "https://www.phoenixcontact.com/en-us/products/pcb-header-bch-381h-2-gn-5444262" (at 262.89 128.27 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid d004025f-9f39-4edd-9f11-f82d6abadf53))
