@@ -1,2 +1,17 @@
 
 *.zip
+*.mk
+*.map
+*.mum
+*.o
+Firmware/Sampling-Firmware.X/dist/free/debug/Sampling-Firmware.X.debug.rlf
+*.sdb
+*.sym
+*.hxl
+*.lst
+*.elf
+*.cmf
+*.p1
+*.d
+*.i
+Firmware/Sampling-Firmware.X/nbproject/Makefile-genesis.properties

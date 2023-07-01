@@ -7,7 +7,7 @@ This repository contains the documentation, hardware files, and firmware used fo
 
 This bare metal I<sup>2</sup>C driver was used as a code base: https://github.com/microchip-pic-avr-examples/pic18f56q71-bare-metal-i2c-mplab 
 
-**Per the license agreement in this code, the firmware can ONLY be used with Microchip products.**
+**Per the license agreement in this code, the firmware (specifically the I<sup>2</sup>C driver) can ONLY be used with Microchip microcontrollers.** This is not an issue as the physical board is not compatiable with other microcontrollers.
 
 ## Design Objectives
 
@@ -42,10 +42,10 @@ Microcontroller: PIC18F1xQ41
 | Servo 4 | 7 (RC3)
 | Servo 5 | 6 (RC4)
 | Servo 6 | 5 (RC5)
-| PUMP_EN | 11 (RB6)
-| EXT_LED | 15 (RC1)
-| AN1 | 12 (RB5)
-| AN2 | 17 (RA2)
+| EXT_LED | 11 (RB6)
+| PUMP_EN | 15 (RC1)
+| AN1 | 17 (RA2)
+| AN2 | 12 (RB5)
 | DEBUG 0 | 19 (RA0 / ICSPDAT)
 | DEBUG 1 | 18 (RA1 / ICSPCLK)
 | OPAMP_OUT (reserved) | 14 (RC2)
@@ -88,6 +88,7 @@ Microcontroller: PIC18F1xQ41
 | 0x34    | Gain Configure 1 | Sets the OPAMP gain for Analog Input 1
 | 0x35    | Analog Configure 2 | Configures the ADC for Analog Input 2
 | 0x36    | Gain Configure 2 | Sets the OPAMP gain for Analog Input 2
+| 0xFF   | Test Pattern | Always returns 0xAA
 
 ### Notes
 
