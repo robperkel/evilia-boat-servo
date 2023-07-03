@@ -1,7 +1,20 @@
-# Dr. Evilia's Boat Control HAT
+# Dr. Evilia's Boat Sampling HAT
 This custom HAT is used to better implement control of the servos and motors used on her sampling boat. We found there wasn't a good "off-the-shelf" board available that fit the desired specifications. This project is designed around a small, 8-bit microcontroller that provides a far more intelligent and flexible design interface. 
 
 This repository contains the documentation, hardware files, and firmware used for this project. The boat runs on a Raspberry Pi 4, Model B.  
+
+## Table of Contents
+
+- [Base Software](#base-software)
+- [Tools Needed](#tools-needed)
+    - [Other Tools Used](#other-tools-used)
+- [Bill of Materials (BOM)](#bill-of-materials-bom)
+- [Design Objectives](#design-objectives)
+- [Microcontroller Pinout](#microcontroller-pinout)
+- [Register Map](#register-map)
+- [Digital Control](#digital-control)
+- [Analog Control](#analog-control)
+- [Usage from Raspberry Pi](#usage-from-raspberry-pi)
 
 ## Base Software
 
@@ -9,20 +22,38 @@ This bare metal I<sup>2</sup>C driver was used as a code base: https://github.co
 
 **Per the license agreement in this code, the firmware (specifically the I<sup>2</sup>C driver) can ONLY be used with Microchip microcontrollers.** This is not an issue as the physical board is not compatiable with other microcontrollers.
 
+## Tools Needed
+
+- Programming / Development IDE: [MPLAB&reg; X IDE v6.10](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide)
+- Compiler: [MPLAB XC8 v2.41](https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers/downloads-documentation#XC8)  
+- Programmer: [MPLAB SNAP](https://www.microchip.com/en-us/development-tool/PG164100) or [PICKIT&trade; 4](https://www.microchip.com/en-us/development-tool/PG164140)
+
+### Other Tools Used
+
+- Block Diagrams: [Draw.io](https://app.diagrams.net/)
+- Schematic and PCB Generation: [KiCad 7](https://www.kicad.org/)
+- PCB Vendor: [OSH Park](https://oshpark.com/)
+    - If ordering from a different vendor, I recommend choosing a surface finish such as ENIG to provide some corrosion resistance in the high humidity environment.
+
+## Bill of Materials (BOM)
+
+Order PCBs directly from the [OSH Park Project Page](https://oshpark.com/shared_projects/hY3GzXty)  
+Digikey Shopping List: TBD  
+- Alternatively, export the BOM from the KiCad files for other vendors. 
+
+**Important: Shopping list does NOT include a programmer. Programmers can obtained from Digikey (or other electronics vendor).**
+
 ## Design Objectives
 
 1. Support 6x 3-pin servo motors
 2. ON/OFF control of a large pump
 3. LED outputs for various indicators
 4. I<sup>2</sup>C Interface
+5. 3.3V logic interface with Raspberry Pi
+6. 5V, 500mA motor control (ON/OFF)
+7. 50 Hz Servo Frequency
 
-## Electrical Requirements
-
-1. 3.3V logic interface
-2. 12V, 500mA motor control (ON/OFF)
-3. 50 Hz Servo Frequency
-
-### Pinout
+## Microcontroller Pinout
 
 Microcontroller: PIC18F1xQ41
 (PIC18F14Q41 / PIC18F15Q41 / PIC18F16Q41)
@@ -65,6 +96,8 @@ Microcontroller: PIC18F1xQ41
 | 0x02    | SAMPLE | Selects the input to sample 
 | 0x03    | ADCH | ADC Measurement, High Byte
 | 0x04    | ADCL | ADC Measurement, Low Byte
+| 0x06    | PUMP_TIME | Sets the on time of the PUMP_EN
+| 0x07    | LED_TIME  | Sets the on time of the EXT_LED
 | 0x0A    | RESET | Resets the microcontroller and returns  all settings to defaults
 | 0x10    | DC1H | Duty Cycle of PWM1, High Byte
 | 0x11    | DC1L | Duty Cycle of PWM1, Low Byte
@@ -102,7 +135,9 @@ Microcontroller: PIC18F1xQ41
 
 | Bit Position(s) | Function 
 | ------------ | --------
-| 7:1 | X
+| 7:3 | X
+| 2 | EXT_LED State
+| 1 | PUMP_EN State
 | 0 | Sample Ready
 
 Note: Bit 0 is cleared automatically when any part of the ADC value is read.
@@ -127,9 +162,27 @@ Note: "X" values are reserved.
 | 0x01  | Analog Input 1
 | 0x02  | Analog Input 2
 
+### PUMP_TIME Register
+
+| Bit Position(s) | Function 
+| ------------ | --------
+| 7:0 | Maximum time (in seconds) for the pump to be on for
+
+* If `PUMP_TIME` is set to 0, then there is no timeout for the pump. 
+* Initializes to 120s on Power on Reset (PoR).
+
+### LED_TIME Register
+
+| Bit Position(s) | Function 
+| ------------ | --------
+| 7:0 | Maximum time (in seconds) for the external LED to be on for
+
+* If `LED_TIME` is set to 0, then there is no timeout for the LED. 
+* Initializes to 0 (disabled) on Power on Reset (PoR).  
+
 ### RESET Register
 
-| Value | Sampled Input 
+| Value | Function 
 | ----- | --------
 | 0x5A  | RESET the microcontroller
 
