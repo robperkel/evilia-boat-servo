@@ -62,7 +62,7 @@
 #include "i2c_client.h"
 #include "interrupts.h"
 #include "GPIO.h"
-#include "SW_Registers.h"
+#include "I2C_FSM.h"
 
 #define BUFFER_SIZE 16
 
@@ -82,15 +82,15 @@ void main(void) {
     //Assign Interrupt Handlers
     
     //User Defined Functions
-    I2C_assignByteWriteHandler(&Registers_handleWrite);
-    I2C_assignByteReadHandler(&Registers_handleRead);
-    I2C_assignStopHandler(&Registers_handleStop);
+    I2C_assignByteWriteHandler(&I2C_FSM_handleWrite);
+    I2C_assignByteReadHandler(&I2C_FSM_handleRead);
+    I2C_assignStopHandler(&I2C_FSM_handleStop);
     
     //Configure Vector Interrupts
     Interrupts_init();
     
     //Init SW Registesrs
-    Registers_init();
+    I2C_FSM_init();
     
     //Enable Interrupts
     Interrupts_enable();

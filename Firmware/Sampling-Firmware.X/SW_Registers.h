@@ -1,28 +1,33 @@
-#ifndef I2C_REGISTERS_H
-#define	I2C_REGISTERS_H
+#ifndef SW_REGISTERS_H
+#define	SW_REGISTERS_H
 
 #ifdef	__cplusplus
 extern "C" {
 #endif
     
-#include <stdbool.h>
 #include <stdint.h>
+#include <stdbool.h>
     
-    //Init the SW Registers
+    //Initializes the SW-defined registers and state machines
     void Registers_init(void);
     
-    //Handles Bytes from I2C Interface
-    bool Registers_handleWrite(uint8_t val);
+    //Cleans up variables on an I2C Stop
+    void Registers_finish(void);
     
-    //Sends Bytes to I2C Interface
-    uint8_t Registers_handleRead(void);
+    //Sets the address to read/write to. Returns false if address is invalid
+    bool Registers_setRegisterAddress(uint8_t addr);
     
-    //I2C Stop Event
-    void Registers_handleStop(void);
+    //Reads a byte of data from the defined register address. Automatically increments on valid address.
+    //Returns 0xFF if invalid (and does not increment to the next position).
+    uint8_t Registers_getByte(void);
     
+    //Writes a byte of data to the defined register address. Automatically increments on valid address.
+    //Returns false if invalid (and does not increment to the next position)
+    bool Registers_setByte(uint8_t val);
+
 #ifdef	__cplusplus
 }
 #endif
 
-#endif	/* I2C_REGISTERS_H */
+#endif	/* SW_REGISTERS_H */
 

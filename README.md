@@ -38,8 +38,12 @@ This bare metal I<sup>2</sup>C driver was used as a code base: https://github.co
 ## Bill of Materials (BOM)
 
 Order PCBs directly from the [OSH Park Project Page](https://oshpark.com/shared_projects/hY3GzXty)  
-Digikey Shopping List: TBD  
-- Alternatively, export the BOM from the KiCad files for other vendors. 
+Digikey Shopping List: [https://www.digikey.com/en/mylists/list/YOLHZE0EBO](https://www.digikey.com/en/mylists/list/YOLHZE0EBO)   
+- See `Control Board.xlsx` for the BOM
+    - Red, struck-through items are not in the BOM
+- Includes 0 ohm jumpers for I<sup>2</sup>C Address Setting
+- Motor drive parts for `EXT_LED1` are not included
+- Optional off-board connectors are not in the list
 
 **Important: Shopping list does NOT include a programmer. Programmers can obtained from Digikey (or other electronics vendor).**
 
@@ -121,7 +125,6 @@ Microcontroller: PIC18F1xQ41
 | 0x34    | Gain Configure 1 | Sets the OPAMP gain for Analog Input 1
 | 0x35    | Analog Configure 2 | Configures the ADC for Analog Input 2
 | 0x36    | Gain Configure 2 | Sets the OPAMP gain for Analog Input 2
-| 0xFF   | Test Pattern | Always returns 0xAA
 
 ### Notes
 
