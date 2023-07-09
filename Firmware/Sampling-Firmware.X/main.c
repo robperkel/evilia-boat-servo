@@ -63,45 +63,38 @@
 #include "interrupts.h"
 #include "GPIO.h"
 #include "I2C_FSM.h"
-
-#define BUFFER_SIZE 16
-
-static volatile uint8_t buffer[BUFFER_SIZE];
+#include "SW_Registers.h"
+#include "system.h"
+#include "self_test.h"
 
 void main(void) {
     
-    GPIO_init();
+    //Init Hardware Peripherals
+    System_init();
     
-    //Init I2C Client
-    I2C_initClient();
+    //Init I2C SW State Machine
+    I2C_FSM_init();
     
-    //Reset I2C on Bus TimeOut (BTO), 1ms Bus Timeout
-    //See Note 2 for I2CxBTO Register in the Datasheet for Details
-    I2C_initBTO(true, true, 0, I2C_BTO_LFINTOSC);
-        
-    //Assign Interrupt Handlers
-    
-    //User Defined Functions
+    //Init SW Defined Registers
+    Registers_init();
+
+    //Assign I2C Interrupt Handlers
     I2C_assignByteWriteHandler(&I2C_FSM_handleWrite);
     I2C_assignByteReadHandler(&I2C_FSM_handleRead);
     I2C_assignStopHandler(&I2C_FSM_handleStop);
-    
-    //Configure Vector Interrupts
-    Interrupts_init();
-    
-    //Init SW Registesrs
-    I2C_FSM_init();
-    
+        
     //Enable Interrupts
     Interrupts_enable();
     
+    //If the project is in HW_TEST configuration
+    //The self-test will execute on PoR
+#ifdef HW_SELF_TEST
+    selfTest_runAll();
+#endif
+    
     while (1)
     {
-        //Blink the LED
-        LATC7 = !LATC7;
         
-        //Simple delay
-        for (uint32_t i = 0; i < 0xFFFFF; i++) { ; }
     }
     
     return;

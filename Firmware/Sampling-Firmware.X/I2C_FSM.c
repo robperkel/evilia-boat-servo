@@ -43,4 +43,3 @@ void I2C_FSM_handleStop(void)
     isFirst = true;
     Registers_finish();
 }
-

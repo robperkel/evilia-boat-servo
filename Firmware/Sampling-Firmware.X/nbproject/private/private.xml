@@ -3,12 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/NCO.h</file>
             <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/I2C_FSM.c</file>
+            <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/system.c</file>
+            <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/PWM.c</file>
             <file>file:/C:/Program%20Files/Microchip/MPLABX/v6.10/packs/Microchip/PIC18F-Q_DFP/1.17.379/xc8/pic/include/proc/pic18f16q41.h</file>
+            <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/system.h</file>
+            <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/NCO.c</file>
+            <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/self_test.h</file>
+            <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/self_test.c</file>
             <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/GPIO.h</file>
             <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/SW_Registers.c</file>
             <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/GPIO.c</file>
             <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/main.c</file>
+            <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/PWM.h</file>
             <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/SW_Registers.h</file>
             <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/i2c_client.c</file>
             <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/interrupts.h</file>

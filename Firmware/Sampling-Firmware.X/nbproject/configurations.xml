@@ -9,10 +9,14 @@
         <itemPath>interrupts.h</itemPath>
         <itemPath>GPIO.h</itemPath>
         <itemPath>GPIO_Macros.h</itemPath>
+        <itemPath>PWM.h</itemPath>
+        <itemPath>system.h</itemPath>
+        <itemPath>NCO.h</itemPath>
       </logicalFolder>
       <itemPath>I2C_FSM.h</itemPath>
       <itemPath>SW_Registers.h</itemPath>
       <itemPath>SW_Registers_Types.h</itemPath>
+      <itemPath>self_test.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -25,10 +29,14 @@
         <itemPath>i2c_client.c</itemPath>
         <itemPath>interrupts.c</itemPath>
         <itemPath>GPIO.c</itemPath>
+        <itemPath>system.c</itemPath>
+        <itemPath>NCO.c</itemPath>
+        <itemPath>PWM.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
       <itemPath>I2C_FSM.c</itemPath>
       <itemPath>SW_Registers.c</itemPath>
+      <itemPath>self_test.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -41,7 +49,7 @@
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
-    <conf name="free" type="2">
+    <conf name="production" type="2">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
         <targetDevice>PIC18F16Q41</targetDevice>
@@ -285,19 +293,19 @@
         <property key="voltagevalue" value=""/>
       </nEdbgTool>
     </conf>
-    <conf name="pro" type="2">
+    <conf name="hw_test" type="2">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
-        <targetDevice>PIC18F56Q71</targetDevice>
+        <targetDevice>PIC18F16Q41</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>nEdbgTool</platformTool>
+        <platformTool>noID</platformTool>
         <languageToolchain>XC8</languageToolchain>
         <languageToolchainVersion>2.41</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
-        <pack name="PIC18F-Q_DFP" vendor="Microchip" version="1.14.237"/>
+        <pack name="PIC18F-Q_DFP" vendor="Microchip" version="1.17.379"/>
       </packs>
       <ScriptingSettings>
       </ScriptingSettings>
@@ -332,8 +340,8 @@
         <property key="call-prologues" value="false"/>
         <property key="default-bitfield-type" value="true"/>
         <property key="default-char-type" value="true"/>
-        <property key="define-macros" value=""/>
-        <property key="disable-optimizations" value="false"/>
+        <property key="define-macros" value="HW_SELF_TEST"/>
+        <property key="disable-optimizations" value="true"/>
         <property key="extra-include-directories" value=""/>
         <property key="favor-optimization-for" value="-speed,+space"/>
         <property key="garbage-collect-data" value="true"/>
@@ -347,7 +355,7 @@
         <property key="optimization-debug" value="false"/>
         <property key="optimization-invariant-enable" value="false"/>
         <property key="optimization-invariant-value" value="16"/>
-        <property key="optimization-level" value="-Os"/>
+        <property key="optimization-level" value="-O0"/>
         <property key="optimization-speed" value="false"/>
         <property key="optimization-stable-enable" value="false"/>
         <property key="preprocess-assembler" value="true"/>
@@ -440,7 +448,7 @@
         <property key="memories.programmemory.ranges" value="0-ffff"/>
         <property key="poweroptions.powerenable" value="false"/>
         <property key="programmerToGoFilePath"
-                  value="C:/Users/C62081/Documents/GIT Repos/pic18f56q71-bare-metal-i2c-mplab/i2c-client.X/debug/pro/i2c-client_ptg"/>
+                  value="C:/Users/C62081/Documents/GIT Repos/pic18f56q71-bare-metal-i2c-mplab/i2c-client.X/debug/free/i2c-client_ptg"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.preservedataflash" value="false"/>
         <property key="programoptions.preservedataflash.ranges"
@@ -512,8 +520,6 @@
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="0-ffff"/>
         <property key="poweroptions.powerenable" value="false"/>
-        <property key="programmerToGoFilePath"
-                  value="C:/Users/C62081/Documents/GIT Repos/pic18f56q71-bare-metal-i2c-mplab/i2c-client.X/debug/pro/i2c-client_ptg"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.preservedataflash" value="false"/>
         <property key="programoptions.preservedataflash.ranges"

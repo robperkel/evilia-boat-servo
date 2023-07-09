@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <executable name="dist/free/debug\Sampling-Firmware.X.debug.hex">
+  <executable name="dist/hw_test/debug\Sampling-Firmware.X.debug.hex">
     <memory name="program">
       <units>bytes</units>
       <length>65536</length>
@@ -10,8 +10,8 @@
     <memory name="data">
       <units>bytes</units>
       <length>4096</length>
-      <used>48</used>
-      <free>4048</free>
+      <used>32</used>
+      <free>4064</free>
     </memory>
   </executable>
 </project>

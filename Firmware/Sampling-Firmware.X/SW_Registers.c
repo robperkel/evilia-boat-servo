@@ -27,120 +27,36 @@ bool Registers_setRegisterAddress(uint8_t addr)
     switch (addr)
     {
         case REG_STATUS:
-        {
-            break;
-        }
         case REG_OUTPUT:
-        {
-            break;
-        }
         case REG_SAMPLE:
-        {
-            break;
-        }
         case REG_ADC_H:
-        {
-            break;
-        }
         case REG_ADC_L:
-        {
-            break;
-        }
         case REG_PUMP_TIME:
-        {
-            break;
-        }
         case REG_LED_TIME:
-        {
-            break;
-        }
         case REG_DC1_H:
-        {
-            break;
-        }
         case REG_DC1_L:
-        {
-            break;
-        }
         case REG_DC2_H:
-        {
-            break;
-        }
         case REG_DC2_L:
-        {
-            break;
-        }
         case REG_DC3_H:
-        {
-            break;
-        }
         case REG_DC3_L:
-        {
-            break;
-        }
         case REG_DC4_H:
-        {
-            break;
-        }
         case REG_DC4_L:
-        {
-            break;
-        }
         case REG_DC5_H:
-        {
-            break;
-        }
         case REG_DC5_L:
-        {
-            break;
-        }
         case REG_DC6_H:
-        {
-            break;
-        }
         case REG_DC6_L:
-        {
-            break;
-        }
         case REG_FRQ1_H:
-        {
-            break;
-        }
         case REG_FRQ1_L:
-        {
-            break;
-        }
         case REG_FRQ2_H:
-        {
-            break;
-        }
         case REG_FRQ2_L:
-        {
-            break;
-        }
         case REG_FRQ3_H:
-        {
-            break;
-        }
         case REG_FRQ3_L:
-        {
-            break;
-        }
         case REG_ANALOG_CONFIG1:
-        {
-            break;
-        }
         case REG_GAIN_CONFIG1:
-        {
-            break;
-        }
         case REG_ANALOG_CONFIG2:
-        {
-            break;
-        }
         case REG_GAIN_CONFIG2:
         {
-            break;
+            return true;
         }
         default:
         {
@@ -148,7 +64,7 @@ bool Registers_setRegisterAddress(uint8_t addr)
             return false;
         }
     }
-    return true;
+    return false;
 }
 
 //Reads a byte of data from the defined register address. Automatically increments on valid address.

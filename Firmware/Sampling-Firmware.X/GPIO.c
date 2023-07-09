@@ -87,5 +87,47 @@ void GPIO_init()
     }
     
     //Init PWM
+    {
+        //PWM1S1P1 - RB7 (Servo 1)
+        //PWM1S1P2 - RC7 (Servo 2)
+        //PWM1S2P1 - RC6 (Servo 3)
+        //PWM1S2P2 - RC3 (Servo 4)
+        //PWM1S3P1 - RC4 (Servo 5)
+        //PWM1S3P2 - RC5 (Servo 6)
+        
+        TRISB7 = TRIS_OUTPUT;
+        LATB7 = LAT_LOW;
+        RB7PPS = 0x0A;
+        
+        TRISC7 = TRIS_OUTPUT;
+        LATC7 = LAT_LOW;
+        RC7PPS = 0x0B;
+        
+        TRISC6 = TRIS_OUTPUT;
+        LATC6 = LAT_LOW;
+        RC6PPS = 0x0C;
+        
+        TRISC3 = TRIS_OUTPUT;
+        LATC3 = LAT_LOW;
+        RC3PPS = 0x0D;
+        
+        TRISC4 = TRIS_OUTPUT;
+        LATC4 = LAT_LOW;
+        RC4PPS = 0x0E;
+        
+        TRISC5 = TRIS_OUTPUT;
+        LATC5 = LAT_LOW;
+        RC5PPS = 0x0F;
+    }
     
+    //Init OPAMP
+    {
+        //Analog Input 1 - RA2
+        //Analog Input 2 - RB5
+        //Inputs configured in discrete I/O section
+        
+        //OPAMP Output - RC2
+        
+        ANSELCbits.ANSELC2 = ANSEL_ANALOG; //This probably un-necessary, but better safe than sorry
+    }
 }

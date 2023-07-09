@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configurationDescriptor version="65">
   <projectmakefile>Makefile</projectmakefile>
-  <defaultConf>0</defaultConf>
+  <defaultConf>1</defaultConf>
   <confs>
-    <conf name="free" type="2">
+    <conf name="production" type="2">
       <platformToolSN>noToolString</platformToolSN>
       <languageToolchainDir>C:\Program Files\Microchip\xc8\v2.41\bin</languageToolchainDir>
       <mdbdebugger version="1">
@@ -21,8 +21,8 @@
         </environment>
       </runprofile>
     </conf>
-    <conf name="pro" type="2">
-      <platformToolSN></platformToolSN>
+    <conf name="hw_test" type="2">
+      <platformToolSN>noToolString</platformToolSN>
       <languageToolchainDir>C:\Program Files\Microchip\xc8\v2.41\bin</languageToolchainDir>
       <mdbdebugger version="1">
         <placeholder1>place holder 1</placeholder1>

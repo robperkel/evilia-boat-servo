@@ -1,10 +1,3 @@
-/* 
- * File:   SW_Registers_Types.h
- * Author: rober
- *
- * Created on July 7, 2023, 12:49 AM
- */
-
 #ifndef SW_REGISTERS_TYPES_H
 #define	SW_REGISTERS_TYPES_H
 

@@ -5,6 +5,7 @@
 extern "C" {
 #endif
     
+//Starting Address of Interrupt Table
 #define INTERRUPT_BASE 0x1000
     
     //Initializes vector interrupts on the devices
