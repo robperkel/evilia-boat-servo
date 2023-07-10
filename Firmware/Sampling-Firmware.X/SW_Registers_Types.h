@@ -47,6 +47,16 @@ extern "C" {
         UNUSED = 0x00, ANALOG_INPUT1, ANALOG_INPUT2
     } AnalogInput;
     
+    //Averaging Configurations
+    typedef enum {
+        ADC_1_SAMPLE = 0b0000, ADC_2_SAMPLES, ADC_4_SAMPLES, ADC_8_SAMPLES, ADC_16_SAMPLES
+    } AveragingConfiguration;
+    
+    //Voltage Reference Configurations
+    typedef enum {
+        VDD = 0b00, FVR_1V, FVR_2V, FVR_4V
+    } VoltageReferenceConfiguration;
+    
     //Analog Config Bitfield
     typedef union {
         struct {
@@ -57,10 +67,21 @@ extern "C" {
         uint8_t value;
     } AnalogConfigRegister;
     
+    //OPAMP Gain Configuration
+    typedef enum {
+        GAIN_16_OVER_15 = 0b000, GAIN_8_OVER_7, GAIN_4_OVER_3, GAIN_2, 
+                GAIN_8_OVER_3, GAIN_4, GAIN_8, GAIN_16
+    } GainConfiguration;
+    
+    //Unity Gain Macros
+#define UNITY_GAIN_ENABLED 0b1
+#define UNITY_GAIN_DISABLED 0b0
+    
     //Gain Config Bitfield
     typedef union {
         struct {
-            unsigned gainConfig : 4;
+            unsigned gainConfig : 3;
+            unsigned unityGain : 1;
             unsigned : 4;
         };
         uint8_t value;

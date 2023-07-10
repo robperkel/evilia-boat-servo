@@ -12,6 +12,7 @@
         <itemPath>PWM.h</itemPath>
         <itemPath>system.h</itemPath>
         <itemPath>NCO.h</itemPath>
+        <itemPath>TMR2.h</itemPath>
       </logicalFolder>
       <itemPath>I2C_FSM.h</itemPath>
       <itemPath>SW_Registers.h</itemPath>
@@ -328,8 +329,8 @@
         <makeCustomizationPreStepEnabled>false</makeCustomizationPreStepEnabled>
         <makeUseCleanTarget>false</makeUseCleanTarget>
         <makeCustomizationPreStep></makeCustomizationPreStep>
-        <makeCustomizationPostStepEnabled>false</makeCustomizationPostStepEnabled>
-        <makeCustomizationPostStep></makeCustomizationPostStep>
+        <makeCustomizationPostStepEnabled>true</makeCustomizationPostStepEnabled>
+        <makeCustomizationPostStep>echo ">> Warning: Building in HW Test Mode."</makeCustomizationPostStep>
         <makeCustomizationPutChecksumInUserID>false</makeCustomizationPutChecksumInUserID>
         <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>

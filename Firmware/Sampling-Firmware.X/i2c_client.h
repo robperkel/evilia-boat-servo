@@ -28,9 +28,7 @@ extern "C" {
     
 #include <stdint.h>
 #include <stdbool.h>
-    
-#define I2C_BASE_ADDRESS 0x40
-    
+        
     //Options for Bus Time Out (BTO) Clock Sources
     typedef enum {
         I2C_BTO_TMR2 = 0b0001, I2C_BTO_TMR4, 
@@ -39,7 +37,7 @@ extern "C" {
     
     //Initializes the I2C Module in Client Mode
     //I/O is configured separately
-    void I2C_initClient(void);
+    void I2C_initClient(uint8_t addr);
     
     //Initialize the bus timeout feature
     //Reset - enables whether the I2C module should reset on a timeout

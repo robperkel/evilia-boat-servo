@@ -3,7 +3,6 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#include "GPIO_Macros.h"
 #include "i2c_client.h"
 #include "interrupts.h"
 
@@ -13,7 +12,7 @@ static void (*stopCallback)(void) = 0;
 
 //Initializes the I2C Module in Client Mode
 //I/O is configured seperately
-void I2C_initClient(void)
+void I2C_initClient(uint8_t addr)
 {
     I2C1CON0 = 0x00;
     I2C1CON0bits.MODE = 0b000;
@@ -37,13 +36,9 @@ void I2C_initClient(void)
     I2C1CNTL = 0xFF;
 
 //    I2C1TXB = 0x00;
-
     
     //Set Client Address
-    uint8_t addrGPIO = I2C_BASE_ADDRESS;
-    addrGPIO |= (ADDR1_GET_VALUE() << 1);
-    addrGPIO |= ADDR0_GET_VALUE();
-    I2C1ADR0 = (addrGPIO) << 1;
+    I2C1ADR0 = (addr) << 1;
        
     //Clear any Interrupt flags
     PIR7bits.I2C1IF = 0;
