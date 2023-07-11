@@ -1,5 +1,6 @@
 #include "SW_Registers.h"
 #include "SW_Registers_Types.h"
+#include "PWM.h"
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -71,6 +72,7 @@ bool Registers_setRegisterAddress(uint8_t addr)
 //Returns 0xFF if invalid (and does not increment to the next position).
 uint8_t Registers_getByte(void)
 {
+    uint8_t rtnVal = 0xFF;
     switch (regIndex)
     {
         case REG_STATUS:
@@ -103,50 +105,62 @@ uint8_t Registers_getByte(void)
         }
         case REG_DC1_H:
         {
+            rtnVal = PWM_getDC_H(SERVO1_INDEX);
             break;
         }
         case REG_DC1_L:
         {
+            rtnVal = PWM_getDC_L(SERVO1_INDEX);
             break;
         }
         case REG_DC2_H:
         {
+            rtnVal = PWM_getDC_H(SERVO2_INDEX);
             break;
         }
         case REG_DC2_L:
         {
+            rtnVal = PWM_getDC_L(SERVO2_INDEX);
             break;
         }
         case REG_DC3_H:
         {
+            rtnVal = PWM_getDC_H(SERVO3_INDEX);
             break;
         }
         case REG_DC3_L:
         {
+            rtnVal = PWM_getDC_L(SERVO3_INDEX);
             break;
         }
         case REG_DC4_H:
         {
+            rtnVal = PWM_getDC_H(SERVO4_INDEX);
             break;
         }
         case REG_DC4_L:
         {
+            rtnVal = PWM_getDC_L(SERVO4_INDEX);
             break;
         }
         case REG_DC5_H:
         {
+            rtnVal = PWM_getDC_H(SERVO5_INDEX);
             break;
         }
         case REG_DC5_L:
         {
+            rtnVal = PWM_getDC_L(SERVO5_INDEX);
             break;
         }
         case REG_DC6_H:
         {
+            rtnVal = PWM_getDC_H(SERVO6_INDEX);
             break;
         }
         case REG_DC6_L:
         {
+            rtnVal = PWM_getDC_L(SERVO6_INDEX);
             break;
         }
         case REG_FRQ1_H:
@@ -192,11 +206,10 @@ uint8_t Registers_getByte(void)
         default:
         {
             //Not defined / implemented
-            return 0xFF;
         }
     }
 
-    return 0xFF;
+    return rtnVal;
 }
 
 //Writes a byte of data to the defined register address. Automatically increments on valid address.

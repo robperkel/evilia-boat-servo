@@ -8,6 +8,9 @@ extern "C" {
     //Runs all self-tests
     void selfTest_runAll(void);
     
+    //Sets the PWM to 10%/20%/30%/40%/50%/60%
+    void selfTest_configurePWM(void);
+    
 #ifdef	__cplusplus
 }
 #endif

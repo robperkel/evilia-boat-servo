@@ -67,6 +67,172 @@ void PWM_loadNewPeriods(void)
     PWMLOAD = 0x03;
 }
 
+//Sets the duty cycle of a specific PWM
+void PWM_setDutyCycle(uint16_t dc, uint8_t servo)
+{
+    switch (servo)
+    {
+        case SERVO1_INDEX:
+        {
+            //Servo 1
+            //PWM1, Phase 1
+            SERVO1_DC = dc;
+            break;
+        }
+        case SERVO2_INDEX:
+        {
+            //Servo 2
+            //PWM1, Phase 2
+            SERVO2_DC = dc;
+            break;
+        }
+        case SERVO3_INDEX:
+        {
+            //Servo 3
+            //PWM2, Phase 1
+            SERVO3_DC = dc;
+            break;
+        }
+        case SERVO4_INDEX:
+        {
+            //Servo 4
+            //PWM2, Phase 2
+            SERVO4_DC = dc;
+            break;
+        }
+        case SERVO5_INDEX:
+        {
+            //Servo 5
+            //PWM3, Phase 1
+            SERVO5_DC = dc;
+            break;
+        }
+        case SERVO6_INDEX:
+        {
+            //Servo 6
+            //PWM3, Phase 2
+            SERVO6_DC = dc;
+            break;
+        }
+        default:
+        {
+            //Invalid index
+        }
+    }
+}
+
+//Gets the high byte of the duty cycle of a specific PWM
+uint8_t PWM_getDC_H(uint8_t servo)
+{
+    uint8_t DC_H = 0xFF;
+    switch (servo)
+    {
+        case SERVO1_INDEX:
+        {
+            //Servo 1
+            //PWM1, Phase 1
+            DC_H = SERVO1_DC_H;
+            break;
+        }
+        case SERVO2_INDEX:
+        {
+            //Servo 2
+            //PWM1, Phase 2
+            DC_H = SERVO2_DC_H;
+            break;
+        }
+        case SERVO3_INDEX:
+        {
+            //Servo 3
+            //PWM2, Phase 1
+            DC_H = SERVO3_DC_H;
+            break;
+        }
+        case SERVO4_INDEX:
+        {
+            //Servo 4
+            //PWM2, Phase 2
+            DC_H = SERVO4_DC_H;
+            break;
+        }
+        case SERVO5_INDEX:
+        {
+            //Servo 5
+            //PWM3, Phase 1
+            DC_H = SERVO5_DC_H;
+            break;
+        }
+        case SERVO6_INDEX:
+        {
+            //Servo 6
+            //PWM3, Phase 2
+            DC_H = SERVO6_DC_H;
+            break;
+        }
+        default:
+        {
+            //Invalid index
+        }
+    }
+    return DC_H;
+}
+
+//Gets the high byte of the duty cycle of a specific PWM
+uint8_t PWM_getDC_L(uint8_t servo)
+{
+    uint8_t DC_L = 0xFF;
+    switch (servo)
+    {
+        case SERVO1_INDEX:
+        {
+            //Servo 1
+            //PWM1, Phase 1
+            DC_L = SERVO1_DC_L;
+            break;
+        }
+        case SERVO2_INDEX:
+        {
+            //Servo 2
+            //PWM1, Phase 2
+            DC_L = SERVO2_DC_L;
+            break;
+        }
+        case SERVO3_INDEX:
+        {
+            //Servo 3
+            //PWM2, Phase 1
+            DC_L = SERVO3_DC_L;
+            break;
+        }
+        case SERVO4_INDEX:
+        {
+            //Servo 4
+            //PWM2, Phase 2
+            DC_L = SERVO4_DC_L;
+            break;
+        }
+        case SERVO5_INDEX:
+        {
+            //Servo 5
+            //PWM3, Phase 1
+            DC_L = SERVO5_DC_L;
+            break;
+        }
+        case SERVO6_INDEX:
+        {
+            //Servo 6
+            //PWM3, Phase 2
+            DC_L = SERVO6_DC_L;
+            break;
+        }
+        default:
+        {
+            //Invalid index
+        }
+    }
+    return DC_L;
+}
+
 //Sets the period of PWM outputs
 void PWM1_setPeriod(uint16_t val)
 {

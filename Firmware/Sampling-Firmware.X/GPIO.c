@@ -1,6 +1,7 @@
 #include "GPIO.h"
 #include "GPIO_Macros.h"
 #include "i2c_client.h"
+#include "SW_Registers_Types.h"
 
 #include <xc.h>
 
@@ -130,4 +131,37 @@ void GPIO_init()
         
         ANSELCbits.ANSELC2 = ANSEL_ANALOG; //This probably un-necessary, but better safe than sorry
     }
+}
+
+//Sets the outputs from the OUTPUT register
+void GPIO_setOutputState(uint8_t state)
+{
+    //Load into union datatype
+    OutputRegister out;
+    out.value = state;
+    
+    
+}
+    
+//Gets the current output state of the I/O for the OUTPUT register
+uint8_t GPIO_getOutputState(void)
+{
+    OutputRegister out;
+    out.value = 0x00;
+    
+    
+    
+    return out.value;
+}
+
+//Callback for TMR2 ISR - LED Timeout
+void GPIO_LED_Timeout_Callback(void)
+{
+    
+}
+
+//Callback for TMR4 ISR - Pump Timeout
+void GPIO_Pump_Timeout_Callback(void)
+{
+    
 }

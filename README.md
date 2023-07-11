@@ -129,7 +129,7 @@ Microcontroller: PIC18F1xQ41
 ### Notes
 
 1. Each PWM is used to control each servo. 
-2. PWM is only updated on the low byte.
+2. PWM frequency and duty cycle is only updated on the low byte.
 3. See "OUTPUT Register Mapping" for bitmapping of this byte.
 4. Certain registers are kept at different offsets to reduce the chance of accidently modifying these values. 
 5. PWM frequency is shared between paired outputs.
