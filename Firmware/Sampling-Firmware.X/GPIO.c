@@ -10,34 +10,34 @@ void GPIO_init()
     //Init Discrete I/O
     {
         //ADDR0 - RC0
-        //ADDR1 - RC1
-        TRISC0 = TRIS_INPUT;
-        TRISC1 = TRIS_INPUT;
+        //ADDR1 - RB4
+        ADDR0_TRIS = TRIS_INPUT;
+        ADDR1_TRIS = TRIS_INPUT;
         
-        ANSELC0 = ANSEL_DIGITAL;
-        ANSELC1 = ANSEL_DIGITAL;
+        ADDR0_ANSEL = ANSEL_DIGITAL;
+        ADDR1_ANSEL = ANSEL_DIGITAL;
         
         //EXT_LED - RB6
         //PUMP_EN - RC1
-        TRISB6 = TRIS_OUTPUT;
-        TRISC1 = TRIS_OUTPUT;
+        EXT_LED_TRIS = TRIS_OUTPUT;
+        PUMP_EN_TRIS = TRIS_OUTPUT;
         
-        ANSELB6 = ANSEL_DIGITAL;
-        ANSELC1 = ANSEL_DIGITAL;
+        EXT_LED_ANSEL = ANSEL_DIGITAL;
+        PUMP_EN_ANSEL = ANSEL_DIGITAL;
         
-        LATB6 = LAT_LOW;
-        LATC1 = LAT_LOW;
+        EXT_LED_LAT = LAT_LOW;
+        PUMP_EN_LAT = LAT_LOW;
         
         //Debug 0 - RA0
         //Debug 1 - RA1
-        TRISA0 = TRIS_OUTPUT;
-        TRISA1 = TRIS_OUTPUT;
+        DEBUG0_TRIS = TRIS_OUTPUT;
+        DEBUG1_TRIS = TRIS_OUTPUT;
         
-        ANSELA0 = ANSEL_DIGITAL;
-        ANSELA1 = ANSEL_DIGITAL;
+        DEBUG0_ANSEL = ANSEL_DIGITAL;
+        DEBUG1_ANSEL = ANSEL_DIGITAL;
         
-        LATA0 = LAT_LOW;
-        LATA1 = LAT_LOW;
+        DEBUG0_LAT = LAT_LOW;
+        DEBUG1_LAT = LAT_LOW;
         
         //Analog Input 1 - RA2
         //Analog Input 2 - RB5
@@ -128,6 +128,7 @@ void GPIO_init()
         //Inputs configured in discrete I/O section
         
         //OPAMP Output - RC2
+        //When peripheral is enabled, pin is set to output mode automatically
         
         ANSELCbits.ANSELC2 = ANSEL_ANALOG; //This probably un-necessary, but better safe than sorry
     }
@@ -140,7 +141,50 @@ void GPIO_setOutputState(uint8_t state)
     OutputRegister out;
     out.value = state;
     
+    if (out.pump)
+    {
+        //Enable pump
+        PUMP_EN_SetHigh();
+    }
+    else
+    {
+        //Disable pump
+        PUMP_EN_SetLow();
+    }
     
+    if (out.extLED)
+    {
+        //Enable EXT_LED
+        EXT_LED_SetHigh();
+    }
+    else
+    {
+        //Disable EXT_LED
+        EXT_LED_SetLow();
+    }
+    
+    if (out.debugLED1)
+    {
+        //Turn on DEBUG1 LED
+        DEBUG1_SetHigh();
+    }
+    else
+    {
+        //Turn off DEBUG1 LED
+        DEBUG1_SetLow();
+    }
+    
+    if (out.debugLED0)
+    {
+        //Turn on DEBUG0 LED
+        DEBUG0_SetHigh();
+    }
+    else
+    {
+        //Turn off DEBUG0 LED
+        DEBUG0_SetLow();
+    }
+
 }
     
 //Gets the current output state of the I/O for the OUTPUT register
@@ -149,7 +193,10 @@ uint8_t GPIO_getOutputState(void)
     OutputRegister out;
     out.value = 0x00;
     
-    
+    out.pump = PUMP_EN_GetValue();
+    out.extLED = EXT_LED_GetValue();
+    out.debugLED1 = DEBUG1_GetValue();
+    out.debugLED0 = DEBUG0_GetValue();
     
     return out.value;
 }
@@ -157,11 +204,11 @@ uint8_t GPIO_getOutputState(void)
 //Callback for TMR2 ISR - LED Timeout
 void GPIO_LED_Timeout_Callback(void)
 {
-    
+    EXT_LED_SetLow();
 }
 
 //Callback for TMR4 ISR - Pump Timeout
 void GPIO_Pump_Timeout_Callback(void)
 {
-    
+    PUMP_EN_SetLow();
 }

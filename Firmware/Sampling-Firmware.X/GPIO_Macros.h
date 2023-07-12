@@ -39,9 +39,49 @@ extern "C" {
 
 //I/O Macros
     
+//PUMP_EN Output - RC1
+#define PUMP_EN_LAT LATC1
+#define PUMP_EN_TRIS TRISC1
+#define PUMP_EN_ANSEL ANSELC1
+#define PUMP_EN_SetHigh() PUMP_EN_LAT = 1
+#define PUMP_EN_SetLow() PUMP_EN_LAT = 0
+#define PUMP_EN_GetValue() PUMP_EN_LAT
+    
+//EXT_LED Output - RB6
+#define EXT_LED_LAT LATB6
+#define EXT_LED_TRIS TRISB6
+#define EXT_LED_ANSEL ANSELB6
+#define EXT_LED_SetHigh() EXT_LED_LAT = 1
+#define EXT_LED_SetLow() EXT_LED_LAT = 0
+#define EXT_LED_GetValue() EXT_LED_LAT
+    
+//DEBUG1 Output - RA1
+#define DEBUG1_LAT LATA1
+#define DEBUG1_TRIS TRISA1
+#define DEBUG1_ANSEL ANSELA1
+#define DEBUG1_SetHigh() DEBUG1_LAT = 1
+#define DEBUG1_SetLow() DEBUG1_LAT = 0
+#define DEBUG1_GetValue() DEBUG1_LAT
+
+//DEBUG0 Output - RA0
+#define DEBUG0_LAT LATA0
+#define DEBUG0_TRIS TRISA0
+#define DEBUG0_ANSEL ANSELA0
+#define DEBUG0_SetHigh() DEBUG0_LAT = 1
+#define DEBUG0_SetLow() DEBUG0_LAT = 0
+#define DEBUG0_GetValue() DEBUG0_LAT
+    
 //I2C Address I/O
-#define ADDR0_GET_VALUE() PORTCbits.RC0
-#define ADDR1_GET_VALUE() PORTBbits.RB4
+    
+//ADDR1 - RB4
+#define ADDR1_TRIS TRISB4
+#define ADDR1_ANSEL ANSELB4
+#define ADDR1_GetValue() PORTBbits.RB4
+    
+//ADDR0 - RC0
+#define ADDR0_TRIS TRISC0
+#define ADDR0_ANSEL ANSELC0
+#define ADDR0_GetValue() PORTCbits.RC0
     
 #ifdef	__cplusplus
 }

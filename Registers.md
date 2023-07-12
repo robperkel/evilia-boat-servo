@@ -36,6 +36,11 @@ This file contains the software-defined registers, bitfields and allowed values.
 | 0x34    | [Gain Configure 1](#gain-configure-register) | Sets the OPAMP gain for Analog Input 1
 | 0x35    | [Analog Configure 2](#analog-configure-register) | Configures the ADC for Analog Input 2
 | 0x36    | [Gain Configure 2](#gain-configure-register) | Sets the OPAMP gain for Analog Input 2
+| 0x50    | Firmware Update | Begins a firmware update operation
+| 0x51    | Firmware Unlock 1 | See note 6
+| 0x52    | Firmware Unlock 2 | See note 6
+| 0x60    | Firmware Version ID | Firmware version identifier
+
 
 ### Notes
 
@@ -44,6 +49,9 @@ This file contains the software-defined registers, bitfields and allowed values.
 3. See "OUTPUT Register Mapping" for bitmapping of this byte.
 4. Certain registers are kept at different offsets to reduce the chance of accidently modifying these values. 
 5. PWM frequency is shared between paired outputs.
+6. `Firmware Unlock 1` and `Firmware Unlock 2` are only accessible from a sequential write on `Firmware Update`. Other access attempts will be rejected.
+
+**Note: Firmware update and version ID are currently not implemented.**
 
 ### STATUS Register Mapping
 
@@ -52,10 +60,13 @@ This file contains the software-defined registers, bitfields and allowed values.
 | 7 | Pump State
 | 6:3 | X
 | 2 | EXT_LED State
-| 1 | PUMP_EN State
+| 1 | Error
 | 0 | Sample Ready
 
-Note: Bit 0 is cleared automatically when any part of the ADC value is read.
+### Notes
+1. Sample Ready is cleared automatically when any part of the ADC value is read.  
+2. The Error bit is set when an illegal command or operation occurs; Automatically cleared on read.
+3. Pump/EXT_LED/PUMP_EN are clones of the `OUTPUT` register values.
 
 ### OUTPUT Register Mapping
 

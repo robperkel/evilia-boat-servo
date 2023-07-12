@@ -16,8 +16,8 @@ void System_init(void)
     
     //Calculate I2C Address on PoR
     uint8_t addr = I2C_BASE_ADDRESS;
-    addr |= (ADDR1_GET_VALUE() << 1);
-    addr |= ADDR0_GET_VALUE();
+    addr |= (ADDR1_GetValue() << 1);
+    addr |= ADDR0_GetValue();
     
     //Init I2C Client
     I2C_initClient(addr);

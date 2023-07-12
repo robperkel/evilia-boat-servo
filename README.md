@@ -34,12 +34,13 @@ This bare metal I<sup>2</sup>C driver was used as a code base: https://github.co
 - Schematic and PCB Generation: [KiCad 7](https://www.kicad.org/)
 - PCB Vendor: [OSH Park](https://oshpark.com/)
     - If ordering from a different vendor, I recommend choosing a surface finish such as ENIG to provide some corrosion resistance in the high humidity environment.
+    - Conformally coating the board is also recommended.
 
 ## Bill of Materials (BOM)
 
 Order PCBs directly from the [OSH Park Project Page](https://oshpark.com/shared_projects/hY3GzXty)  
 Digikey Shopping List: [https://www.digikey.com/en/mylists/list/YOLHZE0EBO](https://www.digikey.com/en/mylists/list/YOLHZE0EBO)   
-- See `Control Board.xlsx` for the BOM
+- See [Control Board.xlsx](./Control%20Board/Control%20Board.xlsx) for the BOM
     - Red, struck-through items are not in the BOM
 - Includes 0 ohm jumpers for I<sup>2</sup>C Address Setting
 - Motor drive parts for `EXT_LED1` are not included
