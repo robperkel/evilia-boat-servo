@@ -6,6 +6,12 @@
 #include "PWM.h"
 #include "NCO.h"
 #include "GPIO_Macros.h"
+#include "ADCC.h"
+#include "TMR2.h"
+
+#include <stdbool.h>
+
+static bool WDTclear = true;
 
 //Initializes all HW Peripherals
 //DOES NOT INIT SW FEATURES
@@ -35,4 +41,45 @@ void System_init(void)
     
     //Init NCO Peripheral
     NCO_init();
+    
+    //Setup 1s interrupts (to indicate WDT needs to be cleared)
+    NCO_setCallback(&System_setWDTFlag);
+    
+    //Init the ADC
+    ADCC_init();
+    
+    //Init the OPAMP
+    
+    //Init TMR2
+    TMR2_init();
+    
+    //Configure callback
+    LED_TIMEOUT_SET_CALLBACK(&GPIO_LED_Timeout_Callback);
+    
+    //Init TMR4
+    
+    //Configure callback
+    
+}
+
+//This function indicates the Watchdog Timer (WDT) must be cleared
+void System_setWDTFlag(void)
+{
+    WDTclear = true;
+    
+    //Must read the WDT
+    volatile uint8_t t = WDTCON0;
+}
+
+//Returns true if the WDT needs to be cleared
+bool System_getWDTFlag(void)
+{
+    return WDTclear;
+}
+
+//Resets the WDT
+//Only called from Main
+void System_clearWDT(void)
+{
+    CLRWDT();
 }

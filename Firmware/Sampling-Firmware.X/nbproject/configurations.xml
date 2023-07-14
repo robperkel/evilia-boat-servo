@@ -10,14 +10,16 @@
         <itemPath>GPIO.h</itemPath>
         <itemPath>GPIO_Macros.h</itemPath>
         <itemPath>PWM.h</itemPath>
-        <itemPath>system.h</itemPath>
         <itemPath>NCO.h</itemPath>
         <itemPath>TMR2.h</itemPath>
+        <itemPath>ADCC.h</itemPath>
+        <itemPath>OPAMP.h</itemPath>
       </logicalFolder>
       <itemPath>I2C_FSM.h</itemPath>
       <itemPath>SW_Registers.h</itemPath>
       <itemPath>SW_Registers_Types.h</itemPath>
       <itemPath>self_test.h</itemPath>
+      <itemPath>system.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -30,14 +32,17 @@
         <itemPath>i2c_client.c</itemPath>
         <itemPath>interrupts.c</itemPath>
         <itemPath>GPIO.c</itemPath>
-        <itemPath>system.c</itemPath>
         <itemPath>NCO.c</itemPath>
         <itemPath>PWM.c</itemPath>
+        <itemPath>ADCC.c</itemPath>
+        <itemPath>TMR2.c</itemPath>
+        <itemPath>OPAMP.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
       <itemPath>I2C_FSM.c</itemPath>
       <itemPath>SW_Registers.c</itemPath>
       <itemPath>self_test.c</itemPath>
+      <itemPath>system.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

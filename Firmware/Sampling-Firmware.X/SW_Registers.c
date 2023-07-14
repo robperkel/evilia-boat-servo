@@ -1,6 +1,7 @@
 #include "SW_Registers.h"
 #include "SW_Registers_Types.h"
 #include "PWM.h"
+#include "TMR2.h"
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -101,6 +102,7 @@ uint8_t Registers_getByte(void)
         }
         case REG_LED_TIME:
         {
+            rtnVal = LED_TIMEOUT_GET_PERIOD();
             break;
         }
         case REG_DC1_H:
@@ -165,26 +167,32 @@ uint8_t Registers_getByte(void)
         }
         case REG_FRQ1_H:
         {
+            rtnVal = PWM1_getFrequency_H();
             break;
         }
         case REG_FRQ1_L:
         {
+            rtnVal = PWM1_getFrequency_L();
             break;
         }
         case REG_FRQ2_H:
         {
+            rtnVal = PWM2_getFrequency_H();
             break;
         }
         case REG_FRQ2_L:
         {
+            rtnVal = PWM2_getFrequency_L();
             break;
         }
         case REG_FRQ3_H:
         {
+            rtnVal = PWM3_getFrequency_H();
             break;
         }
         case REG_FRQ3_L:
         {
+            rtnVal = PWM3_getFrequency_L();
             break;
         }
         case REG_ANALOG_CONFIG1:

@@ -1,6 +1,9 @@
 #include "NCO.h"
+#include "interrupts.h"
 
 #include <xc.h>
+
+static void (*NCO_callback)(void) = 0;
 
 //Init the NCO Peripheral
 void NCO_init(void)
@@ -17,5 +20,27 @@ void NCO_init(void)
     //About 1s period
     NCO1INC = 1042;
     
+    //Enable NCO Interrupt
+    PIE6bits.NCO1IE = 1;
+    
+    //Enable NCO
     NCO1CONbits.EN = 0b1;
+}
+
+//Set the callback for the NCO
+void NCO_setCallback(void (*callback)(void))
+{
+    NCO_callback = callback;
+    
+}
+
+void __interrupt(irq(NCO1), base(INTERRUPT_BASE)) NCO_onOverflow(void)
+{
+    if (NCO_callback)
+    {
+        NCO_callback();
+    }
+    
+    //Clear NCO Interrupt
+    PIR6bits.NCO1IF = 0;
 }

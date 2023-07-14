@@ -36,7 +36,7 @@
 #pragma config WDTE = ON        // WDT operating mode (WDT enabled regardless of sleep; SWDTEN is ignored)
 
 // CONFIG6
-#pragma config WDTCWS = WDTCWS_7// WDT Window Select bits (window always open (100%); software control; keyed access not required)
+#pragma config WDTCWS = WDTCWS_4// WDT Window Select bits (window delay = 37.5 percent of time; no software control; keyed access required)
 #pragma config WDTCCS = LFINTOSC// WDT input clock selector (WDT reference clock is the 31.0 kHz LFINTOSC)
 
 // CONFIG7
@@ -97,7 +97,12 @@ void main(void) {
     
     while (1)
     {
-        
+        //Does the WDT need to be cleared?
+        if (System_getWDTFlag())
+        {
+            //Clear WDT
+            System_clearWDT();
+        }
     }
     
     return;

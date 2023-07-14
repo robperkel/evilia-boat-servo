@@ -7,6 +7,9 @@ extern "C" {
     
     //Init the NCO Peripheral
     void NCO_init(void);
+    
+    //Set the callback for the NCO
+    void NCO_setCallback(void (*callback)(void));
 
 #ifdef	__cplusplus
 }

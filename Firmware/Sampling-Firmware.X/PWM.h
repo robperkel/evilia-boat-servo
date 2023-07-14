@@ -6,6 +6,7 @@ extern "C" {
 #endif
     
 #include <xc.h>
+#include <stdint.h>
     
 #define SERVO1_INDEX 1
 #define SERVO1_DC PWM1S1P1
@@ -57,7 +58,17 @@ extern "C" {
     void PWM2_setPeriod(uint16_t val);
     void PWM3_setPeriod(uint16_t val);
     
+    //Gets the frequency of PWM outputs
+    uint8_t PWM1_getFrequency_H(void);
+    uint8_t PWM1_getFrequency_L(void);
+    
+    uint8_t PWM2_getFrequency_H(void);
+    uint8_t PWM2_getFrequency_L(void);
+    
+    uint8_t PWM3_getFrequency_H(void);
+    uint8_t PWM3_getFrequency_L(void);
 
+        
 #ifdef	__cplusplus
 }
 #endif

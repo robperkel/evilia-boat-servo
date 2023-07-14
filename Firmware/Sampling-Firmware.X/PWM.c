@@ -249,4 +249,30 @@ void PWM3_setPeriod(uint16_t val)
     PWM3PR = val;
 }
 
+uint8_t PWM1_getFrequency_H(void)
+{
+    return PWM1PRH;
+}
+uint8_t PWM1_getFrequency_L(void)
+{
+    return PWM1PRL;
+}
+
+uint8_t PWM2_getFrequency_H(void)
+{
+    return PWM2PRH;
+}
+uint8_t PWM2_getFrequency_L(void)
+{
+    return PWM2PRL;
+}
+
+uint8_t PWM3_getFrequency_H(void)
+{
+    return PWM3PRH;
+}
+uint8_t PWM3_getFrequency_L(void)
+{
+    return PWM3PRL;
+}
     
