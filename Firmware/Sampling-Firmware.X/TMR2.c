@@ -13,19 +13,19 @@ void TMR2_init(void)
     
     //Sync. to Fosc/4, Rising Edge Count, Sync. to ON, mode = one-shot
     T2HLT = 0x00;
-    T2HLTbits.CKSYNC = 1;
-    T2HLTbits.PSYNC = 1;
+//    T2HLTbits.CKSYNC = 1;
+//    T2HLTbits.PSYNC = 1;
     T2HLTbits.MODE = 0b01000;
     
     //NCO1
     T2CLKCON = 0x00;
-    T2CLKCONbits.CS = 0b0100;
+    T2CLKCONbits.CS = 0b1010;
     
     //No External Reset
     T2RST = 0x00;
     
     //Period of Timer2 
-    T2PR = 242;
+    T2PR = 60;
     
     //Clear TMR2 Flag
     PIR3bits.TMR2IF = 0;
@@ -44,6 +44,7 @@ void TMR2_start(void)
 void TMR2_stop(void)
 {
     T2CONbits.ON = 0;
+    T2TMR = 0x00;
 }
 
 //Set the period of TMR2
@@ -70,10 +71,6 @@ void __interrupt(irq(IRQ_TMR2)) TMR2_onOverflow(void)
     {
         TMR2Overflow();
     }
-    
-    DEBUG0_Toggle();
-    
-    TMR2_start();
     
     //Clear TMR2 Interrupt
     PIR3bits.TMR2IF = 0;

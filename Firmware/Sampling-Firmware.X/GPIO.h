@@ -9,10 +9,7 @@ extern "C" {
     
     //Init the GPIO
     void GPIO_init(void);
-    
-    //Sets the outputs from the OUTPUT register
-    void GPIO_setOutputState(uint8_t state);
-    
+        
     //Gets the current output state of the I/O for the OUTPUT register
     uint8_t GPIO_getOutputState(void);
     

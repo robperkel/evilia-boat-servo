@@ -8,6 +8,8 @@
 #include "GPIO_Macros.h"
 #include "ADCC.h"
 #include "TMR2.h"
+#include "SW_Registers_Types.h"
+#include "OPAMP.h"
 
 #include <stdbool.h>
 
@@ -22,8 +24,10 @@ void System_init(void)
     
     //Calculate I2C Address on PoR
     uint8_t addr = I2C_BASE_ADDRESS;
+#ifndef I2C_DISABLE_ADDR
     addr |= (ADDR1_GetValue() << 1);
     addr |= ADDR0_GetValue();
+#endif
     
     //Init I2C Client
     I2C_initClient(addr);
@@ -49,6 +53,7 @@ void System_init(void)
     ADCC_init();
     
     //Init the OPAMP
+    OPAMP_init();
     
     //Init TMR2
     TMR2_init();
@@ -89,4 +94,59 @@ void System_clearWDT(void)
     
     //Clear flag
     WDTclear = false;
+}
+
+//Sets the GPIO outputs of the system
+void System_setGPIO(uint8_t state)
+{
+    //Load into union datatype
+    OutputRegister out;
+    out.value = state;
+    
+    if (out.pump)
+    {
+        //Enable pump
+        PUMP_EN_SetHigh();
+    }
+    else
+    {
+        //Disable pump
+        PUMP_EN_SetLow();
+    }
+    
+    if (out.extLED)
+    {
+        //Enable EXT_LED
+        EXT_LED_SetHigh();
+        TMR2_start();
+    }
+    else
+    {
+        //Disable EXT_LED
+        EXT_LED_SetLow();
+        TMR2_stop();
+    }
+    
+    if (out.debugLED1)
+    {
+        //Turn on DEBUG1 LED
+        DEBUG1_SetHigh();
+    }
+    else
+    {
+        //Turn off DEBUG1 LED
+        DEBUG1_SetLow();
+    }
+    
+    if (out.debugLED0)
+    {
+        //Turn on DEBUG0 LED
+        DEBUG0_SetHigh();
+    }
+    else
+    {
+        //Turn off DEBUG0 LED
+        DEBUG0_SetLow();
+    }
+
 }

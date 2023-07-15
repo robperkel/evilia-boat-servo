@@ -6,8 +6,12 @@ extern "C" {
 #endif
     
 #include <stdbool.h>
+#include <stdint.h>
     
 #define I2C_BASE_ADDRESS 0x40
+  
+//If defined, ADDR1/0 are not used in address calculation
+//#define I2C_DISABLE_ADDR
     
 //Sets the number of ms the I2C bus can stall for before resetting the peripheral
 #define I2C_TIMEOUT_TIME 1
@@ -28,6 +32,9 @@ extern "C" {
     //Resets the WDT
     //Only called from Main
     void System_clearWDT(void);
+    
+    //Sets the GPIO outputs of the system
+    void System_setGPIO(uint8_t state);
     
 #ifdef	__cplusplus
 }

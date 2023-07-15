@@ -97,8 +97,6 @@ void main(void) {
     
     //NOTE: WDT is set to 2s
     
-    TMR2_start();
-    
     while (1)
     {
         //Does the WDT need to be cleared?
@@ -106,8 +104,6 @@ void main(void) {
         {
             //Clear WDT
             System_clearWDT();
-            
-            
         }
     }
     

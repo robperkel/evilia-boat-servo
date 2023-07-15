@@ -2,6 +2,8 @@
 #include "SW_Registers_Types.h"
 #include "PWM.h"
 #include "TMR2.h"
+#include "GPIO.h"
+#include "system.h"
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -73,19 +75,23 @@ bool Registers_setRegisterAddress(uint8_t addr)
 //Returns 0xFF if invalid (and does not increment to the next position).
 uint8_t Registers_getByte(void)
 {
+    bool isGood = true;
     uint8_t rtnVal = 0xFF;
     switch (regIndex)
     {
         case REG_STATUS:
         {
+            rtnVal = 0xA5;
             break;
         }
         case REG_OUTPUT:
         {
+            rtnVal = GPIO_getOutputState();
             break;
         }
         case REG_SAMPLE:
         {
+            rtnVal = 0x00;
             break;
         }
         case REG_ADC_H:
@@ -214,7 +220,14 @@ uint8_t Registers_getByte(void)
         default:
         {
             //Not defined / implemented
+            isGood = false;
         }
+    }
+    
+    //Increment index if no issues occurred
+    if (isGood)
+    {
+        regIndex++;
     }
 
     return rtnVal;
@@ -224,16 +237,21 @@ uint8_t Registers_getByte(void)
 //Returns false if invalid (and does not increment to the next position)
 bool Registers_setByte(uint8_t val)
 {
+    bool isGood = true;
+    
     switch (regIndex)
     {
         case REG_STATUS:
         {
             //Read Only
+#ifndef HW_SELF_TEST
             return false;
+#endif
             break;
         }
         case REG_OUTPUT:
         {
+            System_setGPIO(val);
             break;
         }
         case REG_SAMPLE:
@@ -347,8 +365,15 @@ bool Registers_setByte(uint8_t val)
         default:
         {
             //Not defined / implemented
-            return false;
+            isGood = false;
         }
     }
-    return false;
+    
+    //Increment index if no issues occurred
+    if (isGood)
+    {
+        regIndex++;
+    }
+    
+    return isGood;
 }

@@ -30,6 +30,7 @@ This bare metal I<sup>2</sup>C driver was used as a code base: https://github.co
 
 ### Other Tools Used
 
+- I<sup>2</sup>C Tester (for development): [MCP2221A Breakout Module (ADM00559)](https://www.microchip.com/en-us/development-tool/ADM00559)
 - Block Diagrams: [Draw.io](https://app.diagrams.net/)
 - Schematic and PCB Generation: [KiCad 7](https://www.kicad.org/)
 - PCB Vendor: [OSH Park](https://oshpark.com/)

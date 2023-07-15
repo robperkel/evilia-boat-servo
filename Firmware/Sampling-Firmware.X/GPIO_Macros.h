@@ -78,11 +78,13 @@ extern "C" {
 //ADDR1 - RB4
 #define ADDR1_TRIS TRISB4
 #define ADDR1_ANSEL ANSELB4
+#define ADDR0_WPU WPUB4
 #define ADDR1_GetValue() PORTBbits.RB4
     
 //ADDR0 - RC0
 #define ADDR0_TRIS TRISC0
 #define ADDR0_ANSEL ANSELC0
+#define ADDR1_WPU WPUC0
 #define ADDR0_GetValue() PORTCbits.RC0
     
 #ifdef	__cplusplus

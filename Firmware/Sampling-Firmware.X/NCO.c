@@ -16,9 +16,9 @@ void NCO_init(void)
     NCO1CLKbits.CKS = 0b0010;
     
     //Increment Value
-    //2^20 / 31000 = ~34
+    //2^20 / 31000 * 2 = ~68
     //About 1s period
-    NCO1INC = 34;
+    NCO1INC = 68;
     
     //Clear flag
     PIR6bits.NCO1IF = 0;

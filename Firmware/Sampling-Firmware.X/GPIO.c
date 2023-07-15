@@ -17,6 +17,9 @@ void GPIO_init()
         ADDR0_ANSEL = ANSEL_DIGITAL;
         ADDR1_ANSEL = ANSEL_DIGITAL;
         
+        ADDR0_WPU = WPU_ENABLED;
+        ADDR1_WPU = WPU_ENABLED;
+        
         //EXT_LED - RB6
         //PUMP_EN - RC1
         EXT_LED_TRIS = TRIS_OUTPUT;
@@ -132,59 +135,6 @@ void GPIO_init()
         
         ANSELCbits.ANSELC2 = ANSEL_ANALOG; //This probably un-necessary, but better safe than sorry
     }
-}
-
-//Sets the outputs from the OUTPUT register
-void GPIO_setOutputState(uint8_t state)
-{
-    //Load into union datatype
-    OutputRegister out;
-    out.value = state;
-    
-    if (out.pump)
-    {
-        //Enable pump
-        PUMP_EN_SetHigh();
-    }
-    else
-    {
-        //Disable pump
-        PUMP_EN_SetLow();
-    }
-    
-    if (out.extLED)
-    {
-        //Enable EXT_LED
-        EXT_LED_SetHigh();
-    }
-    else
-    {
-        //Disable EXT_LED
-        EXT_LED_SetLow();
-    }
-    
-    if (out.debugLED1)
-    {
-        //Turn on DEBUG1 LED
-        DEBUG1_SetHigh();
-    }
-    else
-    {
-        //Turn off DEBUG1 LED
-        DEBUG1_SetLow();
-    }
-    
-    if (out.debugLED0)
-    {
-        //Turn on DEBUG0 LED
-        DEBUG0_SetHigh();
-    }
-    else
-    {
-        //Turn off DEBUG0 LED
-        DEBUG0_SetLow();
-    }
-
 }
     
 //Gets the current output state of the I/O for the OUTPUT register

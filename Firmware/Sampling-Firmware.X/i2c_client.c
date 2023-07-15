@@ -84,7 +84,8 @@ void __interrupt(irq(IRQ_I2C1RX)) I2C_readISR(void)
     
     if (rxCallback != 0)
     {
-        I2C1CON1bits.ACKDT = rxCallback(rx);
+         bool temp = ~rxCallback(rx);
+         I2C1CON1bits.ACKDT = temp;
     }
 
     
