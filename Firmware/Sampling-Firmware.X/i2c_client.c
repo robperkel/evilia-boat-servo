@@ -62,7 +62,7 @@ void I2C_initBTO(bool reset, bool prescale, uint8_t timeout, I2C_BTO_Clock clock
 }
 
 //Write Interrupt
-void __interrupt(irq(I2C1TX), base(INTERRUPT_BASE)) I2C_writeISR(void)
+void __interrupt(irq(IRQ_I2C1TX)) I2C_writeISR(void)
 {    
     if (txCallback != 0)
     {
@@ -78,7 +78,7 @@ void __interrupt(irq(I2C1TX), base(INTERRUPT_BASE)) I2C_writeISR(void)
 }
 
 //Read Interrupt
-void __interrupt(irq(I2C1RX), base(INTERRUPT_BASE)) I2C_readISR(void)
+void __interrupt(irq(IRQ_I2C1RX)) I2C_readISR(void)
 {
     volatile uint8_t rx = I2C1RXB;
     
@@ -93,7 +93,7 @@ void __interrupt(irq(I2C1RX), base(INTERRUPT_BASE)) I2C_readISR(void)
 }
 
 //General I2C Interrupt Handler
-void __interrupt(irq(I2C1), base(INTERRUPT_BASE)) I2C_stopISR(void)
+void __interrupt(irq(IRQ_I2C1)) I2C_stopISR(void)
 {
     if (I2C1PIRbits.PCIF)
     {

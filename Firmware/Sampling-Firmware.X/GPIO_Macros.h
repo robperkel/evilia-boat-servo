@@ -61,6 +61,7 @@ extern "C" {
 #define DEBUG1_ANSEL ANSELA1
 #define DEBUG1_SetHigh() DEBUG1_LAT = 1
 #define DEBUG1_SetLow() DEBUG1_LAT = 0
+#define DEBUG1_Toggle() DEBUG1_LAT = ~DEBUG1_LAT
 #define DEBUG1_GetValue() DEBUG1_LAT
 
 //DEBUG0 Output - RA0
@@ -69,6 +70,7 @@ extern "C" {
 #define DEBUG0_ANSEL ANSELA0
 #define DEBUG0_SetHigh() DEBUG0_LAT = 1
 #define DEBUG0_SetLow() DEBUG0_LAT = 0
+#define DEBUG0_Toggle() DEBUG0_LAT = ~DEBUG0_LAT
 #define DEBUG0_GetValue() DEBUG0_LAT
     
 //I2C Address I/O

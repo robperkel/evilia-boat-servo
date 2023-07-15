@@ -65,6 +65,10 @@ void System_init(void)
 //This function indicates the Watchdog Timer (WDT) must be cleared
 void System_setWDTFlag(void)
 {
+#ifdef HEARTBEAT_LED
+    DEBUG1_Toggle();
+#endif
+    
     WDTclear = true;
     
     //Must read the WDT
@@ -82,4 +86,7 @@ bool System_getWDTFlag(void)
 void System_clearWDT(void)
 {
     CLRWDT();
+    
+    //Clear flag
+    WDTclear = false;
 }

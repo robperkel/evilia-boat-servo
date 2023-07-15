@@ -33,17 +33,17 @@ void PWM_init()
     
     //Set Periods to 50 Hz (Normal Servo Frequency)
     //31 kHz / 50 Hz = 620
-    PWM1PR = 620;
-    PWM2PR = 620;
-    PWM3PR = 620;
+    PWM1PR = PWM_DEFAULT_FRQ_VALUE;
+    PWM2PR = PWM_DEFAULT_FRQ_VALUE;
+    PWM3PR = PWM_DEFAULT_FRQ_VALUE;
     
-    //Set Duty Cycles to 0%
-    PWM1S1P1 = 0x0000;
-    PWM1S1P2 = 0x0000;
-    PWM2S1P1 = 0x0000;
-    PWM2S1P2 = 0x0000;
-    PWM3S1P1 = 0x0000;
-    PWM3S1P2 = 0x0000;
+    //Set Periods to Default
+    PWM1S1P1 = PWM_DEFAULT_DC_VALUE;
+    PWM1S1P2 = PWM_DEFAULT_DC_VALUE;
+    PWM2S1P1 = PWM_DEFAULT_DC_VALUE;
+    PWM2S1P2 = PWM_DEFAULT_DC_VALUE;
+    PWM3S1P1 = PWM_DEFAULT_DC_VALUE;
+    PWM3S1P2 = PWM_DEFAULT_DC_VALUE;
     
     //No PWM Interrupts
     PWM1GIE = 0x00;
@@ -56,7 +56,7 @@ void PWM_init()
     PWM3S1CFG = 0x00;
     
     //Enable all PWM instances at the same time
-    PWMEN = 0x03;
+    PWMEN = 0x07;
 }
 
 //Loads new PWM values - PWM instances are changed simutanously
@@ -64,7 +64,7 @@ void PWM_init()
 void PWM_loadNewPeriods(void)
 {
     //Load new values into PWM1/2/3 at the same time
-    PWMLOAD = 0x03;
+    PWMLOAD = 0x07;
 }
 
 //Sets the duty cycle of a specific PWM

@@ -33,10 +33,10 @@
 
 // CONFIG5
 #pragma config WDTCPS = WDTCPS_11// WDT Period selection bits (Divider ratio 1:65536)
-#pragma config WDTE = ON        // WDT operating mode (WDT enabled regardless of sleep; SWDTEN is ignored)
+#pragma config WDTE = OFF        // WDT operating mode (WDT enabled regardless of sleep; SWDTEN is ignored)
 
 // CONFIG6
-#pragma config WDTCWS = WDTCWS_4// WDT Window Select bits (window delay = 37.5 percent of time; no software control; keyed access required)
+#pragma config WDTCWS = WDTCWS_6// WDT Window Select bits (window always open (100%); no software control; keyed access required)
 #pragma config WDTCCS = LFINTOSC// WDT input clock selector (WDT reference clock is the 31.0 kHz LFINTOSC)
 
 // CONFIG7
@@ -67,6 +67,8 @@
 #include "SW_Registers.h"
 #include "system.h"
 #include "self_test.h"
+#include "GPIO_Macros.h"
+#include "TMR2.h"
 
 void main(void) {
     
@@ -95,6 +97,8 @@ void main(void) {
     
     //NOTE: WDT is set to 2s
     
+    TMR2_start();
+    
     while (1)
     {
         //Does the WDT need to be cleared?
@@ -102,6 +106,8 @@ void main(void) {
         {
             //Clear WDT
             System_clearWDT();
+            
+            
         }
     }
     

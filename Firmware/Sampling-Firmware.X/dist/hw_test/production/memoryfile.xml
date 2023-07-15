@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <executable name="dist/hw_test/debug\Sampling-Firmware.X.debug.hex">
+  <executable name="dist/hw_test/production\Sampling-Firmware.X.production.hex">
     <memory name="program">
       <units>bytes</units>
       <length>32768</length>
-      <used>3084</used>
-      <free>29684</free>
+      <used>3140</used>
+      <free>29628</free>
     </memory>
     <memory name="data">
       <units>bytes</units>
       <length>2048</length>
-      <used>47</used>
-      <free>2001</free>
+      <used>49</used>
+      <free>1999</free>
     </memory>
   </executable>
 </project>

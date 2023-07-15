@@ -16,9 +16,12 @@ void NCO_init(void)
     NCO1CLKbits.CKS = 0b0010;
     
     //Increment Value
-    //(0x01000000 (16,777,216) / 31,000 ) * 2 [Due to FDC] = ~1042
+    //2^20 / 31000 = ~34
     //About 1s period
-    NCO1INC = 1042;
+    NCO1INC = 34;
+    
+    //Clear flag
+    PIR6bits.NCO1IF = 0;
     
     //Enable NCO Interrupt
     PIE6bits.NCO1IE = 1;
@@ -34,7 +37,9 @@ void NCO_setCallback(void (*callback)(void))
     
 }
 
-void __interrupt(irq(NCO1), base(INTERRUPT_BASE)) NCO_onOverflow(void)
+//Note: Do not use IRQ_NCO1 with PIC18F-Q_DFP v1.17.379
+//The wrong IRQ number is assigned to this macro
+void __interrupt(irq(51)) NCO_onOverflow(void)
 {
     if (NCO_callback)
     {
