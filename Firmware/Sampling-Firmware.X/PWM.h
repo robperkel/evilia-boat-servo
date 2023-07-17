@@ -46,7 +46,7 @@ extern "C" {
     
     //Loads new PWM values - PWM instances are changed simutanously
     //Must be called after PWMx_setPeriod
-    void PWM_loadNewPeriods(void);
+    void PWM_loadNewParameters(void);
     
     //Sets the duty cycle of a specific PWM
     void PWM_setDutyCycle(uint16_t dc, uint8_t servo);

@@ -1,14 +1,18 @@
 #include <xc.h>
 
+#include <stdint.h>
+#include <stdbool.h>
+
 #include "OPAMP.h"
 #include "SW_Registers_Types.h"
 
 //Init the OPAMP
 void OPAMP_init(void)
 {
-    //Default to Unity Gain
+    //Default to Unity Gain, enable charge pump
     OPA1CON0 = 0x00;
     OPA1CON0bits.UG = 1;
+    OPA1CON0bits.CPON = 1;
     
     //Disable Resistor Ladder, NSS = VSS
     OPA1CON1 = 0x00;
@@ -31,8 +35,11 @@ void OPAMP_init(void)
 }
     
 //Set the gain of the OPAMP
-void OPAMP_setGainSettings(GainConfigureRegister gain)
+void OPAMP_setGainSettings(uint8_t val)
 {
+    GainConfigureRegister gain;
+    gain.value = val;
+    
     //Disable OPAMP
     OPA1CON0bits.EN = 0;
     

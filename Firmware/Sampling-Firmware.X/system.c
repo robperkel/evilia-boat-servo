@@ -10,10 +10,13 @@
 #include "TMR2.h"
 #include "SW_Registers_Types.h"
 #include "OPAMP.h"
+#include "TMR4.h"
+#include "FVR.h"
 
 #include <stdbool.h>
 
 static bool WDTclear = true;
+static volatile bool statusError = false;
 
 //Initializes all HW Peripherals
 //DOES NOT INIT SW FEATURES
@@ -49,6 +52,9 @@ void System_init(void)
     //Setup 1s interrupts (to indicate WDT needs to be cleared)
     NCO_setCallback(&System_setWDTFlag);
     
+    //Init the FVR
+    FVR_init();
+    
     //Init the ADC
     ADCC_init();
     
@@ -62,9 +68,10 @@ void System_init(void)
     LED_TIMEOUT_SET_CALLBACK(&GPIO_LED_Timeout_Callback);
     
     //Init TMR4
+    TMR4_init();
     
     //Configure callback
-    
+    PUMP_TIMEOUT_SET_CALLBACK(&GPIO_Pump_Timeout_Callback);
 }
 
 //This function indicates the Watchdog Timer (WDT) must be cleared
@@ -148,5 +155,22 @@ void System_setGPIO(uint8_t state)
         //Turn off DEBUG0 LED
         DEBUG0_SetLow();
     }
+}
 
+//Set the error flag
+void System_setError(void)
+{
+    statusError = true;
+}
+
+//Clears the error flag
+void System_clearError(void)
+{
+    statusError = false;
+}
+
+//Returns the state of the error flag
+bool System_getErrorStatus(void)
+{
+    return statusError;
 }

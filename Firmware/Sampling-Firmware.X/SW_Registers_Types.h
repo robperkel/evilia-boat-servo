@@ -10,13 +10,14 @@ extern "C" {
 
     //Register Addresses
     typedef enum {
-        REG_STATUS = 0x00, REG_OUTPUT, REG_SAMPLE, REG_ADC_H, REG_ADC_L, 
+        REG_STATUS = 0x00, REG_OUTPUT, REG_SAMPLE, 
+        REG_ADC_H = 0x04, REG_ADC_L, 
         REG_PUMP_TIME = 0x06, REG_LED_TIME,
         REG_RESET = 0x0A, 
         REG_DC1_H = 0x10, REG_DC1_L, REG_DC2_H, REG_DC2_L, REG_DC3_H, REG_DC3_L,
             REG_DC4_H, REG_DC4_L, REG_DC5_H, REG_DC5_L, REG_DC6_H, REG_DC6_L,
         REG_FRQ1_H = 0x20, REG_FRQ1_L, REG_FRQ2_H, REG_FRQ2_L, REG_FRQ3_H, REG_FRQ3_L,
-        REG_ANALOG_CONFIG1 = 0x33, REG_GAIN_CONFIG1, REG_ANALOG_CONFIG2, REG_GAIN_CONFIG2
+        REG_ANALOG_CONFIG = 0x30, REG_GAIN_CONFIG
     } SWRegisterAddress;
     
     //Status Register Bitfield

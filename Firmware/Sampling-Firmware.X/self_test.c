@@ -18,5 +18,5 @@ void selfTest_configurePWM(void)
     PWM_setDutyCycle(47, SERVO5_INDEX);
     PWM_setDutyCycle(62, SERVO6_INDEX);
     
-    PWM_loadNewPeriods();
+    PWM_loadNewParameters();
 }

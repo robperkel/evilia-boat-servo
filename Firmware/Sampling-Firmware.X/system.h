@@ -36,6 +36,15 @@ extern "C" {
     //Sets the GPIO outputs of the system
     void System_setGPIO(uint8_t state);
     
+    //Set the error flag
+    void System_setError(void);
+    
+    //Clears the error flag
+    void System_clearError(void);
+    
+    //Returns the state of the error flag
+    bool System_getErrorStatus(void);
+    
 #ifdef	__cplusplus
 }
 #endif

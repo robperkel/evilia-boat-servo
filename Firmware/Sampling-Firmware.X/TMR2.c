@@ -25,7 +25,7 @@ void TMR2_init(void)
     T2RST = 0x00;
     
     //Period of Timer2 
-    T2PR = 60;
+    T2PR = DEFAULT_TMR2_PERIOD;
     
     //Clear TMR2 Flag
     PIR3bits.TMR2IF = 0;
@@ -37,7 +37,9 @@ void TMR2_init(void)
 //Start TMR2
 void TMR2_start(void)
 {
-    T2CONbits.ON = 1;
+    //If set to 0x00 - disable timeout
+    if (T2PR != 0x00)
+        T2CONbits.ON = 1;
 }
 
 //Stop TMR2

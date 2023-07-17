@@ -13,6 +13,9 @@ extern "C" {
 #define LED_TIMEOUT_GET_PERIOD TMR2_getPeriod
 #define LED_TIMEOUT_SET_CALLBACK TMR2_setCallback
     
+//Default timeout
+#define DEFAULT_TMR2_PERIOD 0
+    
     //Init TMR2
     void TMR2_init(void);
     

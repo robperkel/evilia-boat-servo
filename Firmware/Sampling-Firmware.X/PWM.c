@@ -61,7 +61,7 @@ void PWM_init()
 
 //Loads new PWM values - PWM instances are changed simutanously
 //Must be called after PWMx_setPeriod
-void PWM_loadNewPeriods(void)
+void PWM_loadNewParameters(void)
 {
     //Load new values into PWM1/2/3 at the same time
     PWMLOAD = 0x07;

@@ -9,8 +9,8 @@ This file contains the software-defined registers, bitfields and allowed values.
 | 0x00    | [STATUS](#status-register-mapping) | Status of the microcontroller
 | 0x01    | [OUTPUT](#output-register-mapping) | Sets the output register (overwrites current value)
 | 0x02    | [SAMPLE](#sample-register) | Selects the input to sample 
-| 0x03    | [ADCH](#adchadcl-register) | ADC Measurement, High Byte
-| 0x04    | [ADCL](#adchadcl-register) | ADC Measurement, Low Byte
+| 0x04    | [ADCH](#adchadcl-register) | ADC Measurement, High Byte
+| 0x05    | [ADCL](#adchadcl-register) | ADC Measurement, Low Byte
 | 0x06    | [PUMP_TIME](#pump_time-register) | Sets the on time of the PUMP_EN
 | 0x07    | [LED_TIME](#led_time-register)  | Sets the on time of the EXT_LED
 | 0x0A    | [RESET](#reset-register) | Resets the microcontroller and returns  all settings to defaults
@@ -32,10 +32,8 @@ This file contains the software-defined registers, bitfields and allowed values.
 | 0x23    | [FRQ2L](#frqxhfrqxl-registers) | Frequency of PWM3/4, Low Byte
 | 0x24    | [FRQ3H](#frqxhfrqxl-registers) | Frequency of PWM5/6, High Byte
 | 0x25    | [FRQ3L](#frqxhfrqxl-registers) | Frequency of PWM5/6, Low Byte
-| 0x33    | [Analog Configure 1](#analog-configure-register) | Configures the ADC for Analog Input 1
-| 0x34    | [Gain Configure 1](#gain-configure-register) | Sets the OPAMP gain for Analog Input 1
-| 0x35    | [Analog Configure 2](#analog-configure-register) | Configures the ADC for Analog Input 2
-| 0x36    | [Gain Configure 2](#gain-configure-register) | Sets the OPAMP gain for Analog Input 2
+| 0x30    | [Analog Configure](#analog-configure-register) | Configures the ADC for Analog Input 1
+| 0x31    | [Gain Configure](#gain-configure-register) | Sets the OPAMP gain for Analog Input 1
 | 0x50    | Firmware Update | Begins a firmware update operation
 | 0x51    | Firmware Unlock 1 | See note 6
 | 0x52    | Firmware Unlock 2 | See note 6

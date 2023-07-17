@@ -4,6 +4,9 @@
 #include "TMR2.h"
 #include "GPIO.h"
 #include "system.h"
+#include "TMR4.h"
+#include "ADCC.h"
+#include "OPAMP.h"
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -22,6 +25,9 @@ void Registers_finish(void)
 {
     regIndex = 0x0000;
     tempVal = 0x0000;
+    
+    //Load new parameters, if changed
+    PWM_loadNewParameters();
 }
 
 //Sets the address to read/write to. Returns false if address is invalid
@@ -55,10 +61,8 @@ bool Registers_setRegisterAddress(uint8_t addr)
         case REG_FRQ2_L:
         case REG_FRQ3_H:
         case REG_FRQ3_L:
-        case REG_ANALOG_CONFIG1:
-        case REG_GAIN_CONFIG1:
-        case REG_ANALOG_CONFIG2:
-        case REG_GAIN_CONFIG2:
+        case REG_ANALOG_CONFIG:
+        case REG_GAIN_CONFIG:
         {
             return true;
         }
@@ -81,7 +85,13 @@ uint8_t Registers_getByte(void)
     {
         case REG_STATUS:
         {
-            rtnVal = 0xA5;
+            //Clear error flag
+            System_clearError();
+            
+            
+            rtnVal = GPIO_getOutputState();
+            rtnVal |= (System_getErrorStatus() << 1);
+            rtnVal |= ADCC_isResultReady();
             break;
         }
         case REG_OUTPUT:
@@ -91,19 +101,22 @@ uint8_t Registers_getByte(void)
         }
         case REG_SAMPLE:
         {
-            rtnVal = 0x00;
+            rtnVal = ADCC_getSampleChannel();
             break;
         }
         case REG_ADC_H:
         {
+            rtnVal = ADCC_getResult_H();
             break;
         }
         case REG_ADC_L:
         {
+            rtnVal = ADCC_getResult_L();
             break;
         }
         case REG_PUMP_TIME:
         {
+            rtnVal = PUMP_TIMEOUT_GET_PERIOD();
             break;
         }
         case REG_LED_TIME:
@@ -201,19 +214,12 @@ uint8_t Registers_getByte(void)
             rtnVal = PWM3_getFrequency_L();
             break;
         }
-        case REG_ANALOG_CONFIG1:
+        case REG_ANALOG_CONFIG:
         {
+            rtnVal = ADCC_getAnalogConfig();
             break;
         }
-        case REG_GAIN_CONFIG1:
-        {
-            break;
-        }
-        case REG_ANALOG_CONFIG2:
-        {
-            break;
-        }
-        case REG_GAIN_CONFIG2:
+        case REG_GAIN_CONFIG:
         {
             break;
         }
@@ -256,110 +262,142 @@ bool Registers_setByte(uint8_t val)
         }
         case REG_SAMPLE:
         {
+            ADCC_setChannelAndGo(val);
             break;
         }
         case REG_ADC_H:
-        {
-            break;
-        }
         case REG_ADC_L:
         {
+            //Read Only
+            isGood = false;
             break;
         }
         case REG_PUMP_TIME:
         {
+            PUMP_TIMEOUT_SET_PERIOD(val);
             break;
         }
         case REG_LED_TIME:
         {
+            LED_TIMEOUT_SET_PERIOD(val);
             break;
         }
         case REG_DC1_H:
         {
+            tempVal = val;
             break;
         }
         case REG_DC1_L:
         {
+            tempVal <<= 8;
+            tempVal |= val;
+            PWM_setDutyCycle(tempVal, SERVO1_INDEX);
             break;
         }
         case REG_DC2_H:
         {
+            tempVal = val;
             break;
         }
         case REG_DC2_L:
         {
+            tempVal <<= 8;
+            tempVal |= val;
+            PWM_setDutyCycle(tempVal, SERVO2_INDEX);
             break;
         }
         case REG_DC3_H:
         {
+            tempVal = val;
             break;
         }
         case REG_DC3_L:
         {
+            tempVal <<= 8;
+            tempVal |= val;
+            PWM_setDutyCycle(tempVal, SERVO3_INDEX);
             break;
         }
         case REG_DC4_H:
         {
+            tempVal = val;
             break;
         }
         case REG_DC4_L:
         {
+            tempVal <<= 8;
+            tempVal |= val;
+            PWM_setDutyCycle(tempVal, SERVO4_INDEX);
             break;
         }
         case REG_DC5_H:
         {
+            tempVal = val;
             break;
         }
         case REG_DC5_L:
         {
+            tempVal <<= 8;
+            tempVal |= val;
+            PWM_setDutyCycle(tempVal, SERVO5_INDEX);
             break;
         }
         case REG_DC6_H:
         {
+            tempVal = val;
             break;
         }
         case REG_DC6_L:
         {
+            tempVal <<= 8;
+            tempVal |= val;
+            PWM_setDutyCycle(tempVal, SERVO6_INDEX);
             break;
         }
         case REG_FRQ1_H:
         {
+            tempVal = val;
             break;
         }
         case REG_FRQ1_L:
         {
+            tempVal <<= 8;
+            tempVal |= val;
+            PWM1_setPeriod(tempVal);
             break;
         }
         case REG_FRQ2_H:
         {
+            tempVal = val;
             break;
         }
         case REG_FRQ2_L:
         {
+            tempVal <<= 8;
+            tempVal |= val;
+            PWM2_setPeriod(tempVal);
             break;
         }
         case REG_FRQ3_H:
         {
+            tempVal = val;
             break;
         }
         case REG_FRQ3_L:
         {
+            tempVal <<= 8;
+            tempVal |= val;
+            PWM3_setPeriod(tempVal);
             break;
         }
-        case REG_ANALOG_CONFIG1:
+        case REG_ANALOG_CONFIG:
         {
+            ADCC_loadAnalogConfig(val);
             break;
         }
-        case REG_GAIN_CONFIG1:
+        case REG_GAIN_CONFIG:
         {
-            break;
-        }
-        case REG_ANALOG_CONFIG2:
-        {
-            break;
-        }
-        case REG_GAIN_CONFIG2:
-        {
+            OPAMP_setGainSettings(val);
             break;
         }
         default:

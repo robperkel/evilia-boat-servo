@@ -17,7 +17,7 @@ extern "C" {
     void OPAMP_init(void);
     
     //Set the gain of the OPAMP
-    void OPAMP_setGainSettings(GainConfigureRegister gain);
+    void OPAMP_setGainSettings(uint8_t val);
 
 #ifdef	__cplusplus
 }
