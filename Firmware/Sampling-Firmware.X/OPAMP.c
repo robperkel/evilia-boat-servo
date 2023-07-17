@@ -6,6 +6,8 @@
 #include "OPAMP.h"
 #include "SW_Registers_Types.h"
 
+static volatile GainConfigureRegister gain;
+
 //Init the OPAMP
 void OPAMP_init(void)
 {
@@ -32,12 +34,14 @@ void OPAMP_init(void)
     
     //Enable the OPAMP
     OPA1CON0bits.EN = 1;
+    
+    gain.value = 0x00;
+    gain.unityGain = 1;
 }
     
 //Set the gain of the OPAMP
 void OPAMP_setGainSettings(uint8_t val)
 {
-    GainConfigureRegister gain;
     gain.value = val;
     
     //Disable OPAMP
@@ -84,4 +88,10 @@ void OPAMP_setGainSettings(uint8_t val)
     
     //Re-enable OPAMP
     OPA1CON0bits.EN = 1;
+}
+
+//Get the gain of the OPAMP
+uint8_t OPAMP_getGainSettings(void)
+{
+    return gain.value;
 }

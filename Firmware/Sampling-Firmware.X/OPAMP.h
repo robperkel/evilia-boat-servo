@@ -3,6 +3,8 @@
 
 #include "SW_Registers_Types.h"
 
+#include <stdint.h>
+
 #ifdef	__cplusplus
 extern "C" {
 #endif
@@ -18,6 +20,9 @@ extern "C" {
     
     //Set the gain of the OPAMP
     void OPAMP_setGainSettings(uint8_t val);
+    
+    //Get the gain of the OPAMP
+    uint8_t OPAMP_getGainSettings(void);
 
 #ifdef	__cplusplus
 }

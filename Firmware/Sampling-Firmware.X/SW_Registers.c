@@ -88,7 +88,6 @@ uint8_t Registers_getByte(void)
             //Clear error flag
             System_clearError();
             
-            
             rtnVal = GPIO_getOutputState();
             rtnVal |= (System_getErrorStatus() << 1);
             rtnVal |= ADCC_isResultReady();
@@ -221,6 +220,7 @@ uint8_t Registers_getByte(void)
         }
         case REG_GAIN_CONFIG:
         {
+            rtnVal = OPAMP_getGainSettings();
             break;
         }
         default:

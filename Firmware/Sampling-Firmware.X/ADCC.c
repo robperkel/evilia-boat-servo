@@ -54,11 +54,18 @@ void ADCC_init(void)
     ADCP = 0x00;
     
     //Update Configuration Variables
+    config.value = 0x00;
     config.averagingConfig = ADC_1_SAMPLE;
     config.voltageRefConfig = FVR_2V;
     
     //Load config settings
     ADCC_loadAnalogConfig(config.value);
+    
+    //Clear AD Threshold
+    PIR2bits.ADTIF = 0;
+    
+    //Enable AD Threshold Interrupt
+    PIE2bits.ADTIE = 1;
 }
 
 //Loads a new analog configuration
@@ -206,4 +213,12 @@ uint8_t ADCC_getResult_L(void)
         return ADRESL;
     }
     return ADFLTRL;
+}
+
+void __interrupt(irq(IRQ_ADT)) ADCC_onConversion(void)
+{
+    sampleReady = true;
+    
+    //Clear AD Threshold
+    PIR2bits.ADTIF = 0;
 }

@@ -33,7 +33,7 @@
 
 // CONFIG5
 #pragma config WDTCPS = WDTCPS_11// WDT Period selection bits (Divider ratio 1:65536)
-#pragma config WDTE = OFF        // WDT operating mode (WDT enabled regardless of sleep; SWDTEN is ignored)
+#pragma config WDTE = ON        // WDT operating mode (WDT enabled regardless of sleep; SWDTEN is ignored)
 
 // CONFIG6
 #pragma config WDTCWS = WDTCWS_6// WDT Window Select bits (window always open (100%); no software control; keyed access required)
