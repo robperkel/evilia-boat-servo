@@ -54,6 +54,9 @@ extern "C" {
 
     //This function is called when an I2C Stop Event occurs
     void I2C_assignStopHandler(void (*stopHandler)(void));
+    
+    //This function is called when an I2C Error occurs
+    void I2C_assignErrorHandler(void (*errorHandler)(void));
 
     
 #ifdef	__cplusplus
