@@ -11,6 +11,9 @@ extern "C" {
     //Sets the PWM to 10%/20%/30%/40%/50%/60%
     void selfTest_configurePWM(void);
     
+    //Test the ADC
+    void selfTest_runADC(void);
+    
 #ifdef	__cplusplus
 }
 #endif

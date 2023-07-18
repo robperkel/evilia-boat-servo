@@ -92,7 +92,7 @@ void main(void) {
     //If the project is in HW_TEST configuration
     //The self-test will execute on PoR
 #ifdef HW_SELF_TEST
-    selfTest_runAll();
+    //selfTest_runAll();
 #endif
     
     //NOTE: WDT is set to 2s

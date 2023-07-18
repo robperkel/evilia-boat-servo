@@ -38,8 +38,8 @@ extern "C" {
 #define SERVO6_DC_H PWM3S1P2H
 #define SERVO6_DC_L PWM3S1P2L
 
-#define PWM_DEFAULT_FRQ_VALUE 620
-#define PWM_DEFAULT_DC_VALUE 31
+#define PWM_DEFAULT_FRQ_VALUE 10000
+#define PWM_DEFAULT_DC_VALUE 250
     
     //Initializes all PWM Instances
     void PWM_init(void);

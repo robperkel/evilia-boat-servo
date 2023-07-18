@@ -92,36 +92,36 @@ void GPIO_init()
     
     //Init PWM
     {
-        //PWM1S1P1 - RB7 (Servo 1)
-        //PWM1S1P2 - RC7 (Servo 2)
-        //PWM1S2P1 - RC6 (Servo 3)
-        //PWM1S2P2 - RC3 (Servo 4)
-        //PWM1S3P1 - RC4 (Servo 5)
-        //PWM1S3P2 - RC5 (Servo 6)
+        //PWM1S1P1 - RB7 (Servo 6)
+        //PWM1S1P2 - RC7 (Servo 5)
+        //PWM2S2P1 - RC6 (Servo 4)
+        //PWM2S2P2 - RC3 (Servo 3)
+        //PWM3S3P1 - RC4 (Servo 2)
+        //PWM3S3P2 - RC5 (Servo 1)
         
         TRISB7 = TRIS_OUTPUT;
         LATB7 = LAT_LOW;
-        RB7PPS = 0x0A;
+        RB7PPS = 0x0F;
         
         TRISC7 = TRIS_OUTPUT;
         LATC7 = LAT_LOW;
-        RC7PPS = 0x0B;
+        RC7PPS = 0x0E;
         
         TRISC6 = TRIS_OUTPUT;
         LATC6 = LAT_LOW;
-        RC6PPS = 0x0C;
+        RC6PPS = 0x0D;
         
         TRISC3 = TRIS_OUTPUT;
         LATC3 = LAT_LOW;
-        RC3PPS = 0x0D;
+        RC3PPS = 0x0C;
         
         TRISC4 = TRIS_OUTPUT;
         LATC4 = LAT_LOW;
-        RC4PPS = 0x0E;
+        RC4PPS = 0x0B;
         
         TRISC5 = TRIS_OUTPUT;
         LATC5 = LAT_LOW;
-        RC5PPS = 0x0F;
+        RC5PPS = 0x0A;
     }
     
     //Init OPAMP

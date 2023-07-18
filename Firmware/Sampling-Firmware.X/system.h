@@ -14,7 +14,7 @@ extern "C" {
 //#define I2C_DISABLE_ADDR
     
 //Sets the number of ms the I2C bus can stall for before resetting the peripheral
-#define I2C_TIMEOUT_TIME 1
+#define I2C_TIMEOUT_TIME 5
     
 //If set, LED1 will blink at 0.5 Hz while running
 #define HEARTBEAT_LED

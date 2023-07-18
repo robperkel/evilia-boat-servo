@@ -85,6 +85,7 @@ Note: "X" values are reserved.
 | 0x00  | *Unused*
 | 0x01  | Analog Input 1
 | 0x02  | Analog Input 2
+| 0x03  | VSS (Ground)
 
 ### ADCH/ADCL Register
 

@@ -16,10 +16,10 @@ void PWM_init()
     PWM2ERS = 0x00;
     PWM3ERS = 0x00;
     
-    //LFINTOSC for base clock
-    PWM1CLK = 0b0100;
-    PWM2CLK = 0b0100;
-    PWM3CLK = 0b0100;
+    //MFINTOSC (500 kHz) for base clock
+    PWM1CLK = 0b0101;
+    PWM2CLK = 0b0101;
+    PWM3CLK = 0b0101;
     
     //No Clock Pre-Scaling
     PWM1CPRE = 0x00;
@@ -32,7 +32,7 @@ void PWM_init()
     PWM3LDS = 0x00;
     
     //Set Periods to 50 Hz (Normal Servo Frequency)
-    //31 kHz / 50 Hz = 620
+    //500 kHz / 50 Hz = 620
     PWM1PR = PWM_DEFAULT_FRQ_VALUE;
     PWM2PR = PWM_DEFAULT_FRQ_VALUE;
     PWM3PR = PWM_DEFAULT_FRQ_VALUE;

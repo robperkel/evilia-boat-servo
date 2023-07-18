@@ -165,6 +165,11 @@ void ADCC_setChannelAndGo(AnalogInput input)
             ADPCH = ADC_AN2_INPUT;
             break;
         }
+        case ANALOG_VSS_INPUT:
+        {
+            ADPCH = ADC_VSS_INPUT;
+            break;
+        }
         default:
         {
             //Invalid value
@@ -189,6 +194,10 @@ uint8_t ADCC_getSampleChannel(void)
     else if (ADPCH == ADC_AN2_INPUT)
     {
         return ANALOG_INPUT2;
+    }
+    else if (ADPCH == ADC_VSS_INPUT)
+    {
+        return ANALOG_VSS_INPUT;
     }
     return UNUSED;
 }

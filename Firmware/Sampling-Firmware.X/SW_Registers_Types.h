@@ -45,7 +45,7 @@ extern "C" {
     
     //Sample Register Options
     typedef enum {
-        UNUSED = 0x00, ANALOG_INPUT1, ANALOG_INPUT2
+        UNUSED = 0x00, ANALOG_INPUT1, ANALOG_INPUT2, ANALOG_VSS_INPUT
     } AnalogInput;
     
     //Averaging Configurations

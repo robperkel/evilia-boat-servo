@@ -23,7 +23,9 @@ void Registers_init(void)
 //Cleans up variables on an I2C Stop
 void Registers_finish(void)
 {
+#ifndef HW_SELF_TEST
     regIndex = 0x0000;
+#endif
     tempVal = 0x0000;
     
     //Load new parameters, if changed
@@ -34,6 +36,8 @@ void Registers_finish(void)
 bool Registers_setRegisterAddress(uint8_t addr)
 {
     //Returns true if matches to a valid address
+    
+    bool isGood = true;
     switch (addr)
     {
         case REG_STATUS:
@@ -64,15 +68,22 @@ bool Registers_setRegisterAddress(uint8_t addr)
         case REG_ANALOG_CONFIG:
         case REG_GAIN_CONFIG:
         {
-            return true;
+            isGood = true;
+            break;
         }
         default:
         {
             //Not defined / implemented
-            return false;
+            isGood = false;
         }
     }
-    return false;
+    
+    if (isGood)
+    {
+        regIndex = addr;
+    }
+    
+    return isGood;
 }
 
 //Reads a byte of data from the defined register address. Automatically increments on valid address.
