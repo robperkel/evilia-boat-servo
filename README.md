@@ -39,7 +39,7 @@ This bare metal I<sup>2</sup>C driver was used as a code base: https://github.co
 
 ## Bill of Materials (BOM)
 
-Order PCBs directly from the [OSH Park Project Page](https://oshpark.com/shared_projects/qA2tLGmg)  
+Order PCBs directly from the [OSH Park Project Page](https://oshpark.com/shared_projects/IClJSFr6)  
 Digikey Shopping List: [https://www.digikey.com/en/mylists/list/YOLHZE0EBO](https://www.digikey.com/en/mylists/list/YOLHZE0EBO)   
 - See [Control Board.xlsx](./Control%20Board/Control%20Board.xlsx) for the BOM
     - Red, struck-through items are not in the BOM
