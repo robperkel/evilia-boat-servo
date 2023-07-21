@@ -32,7 +32,7 @@ void PWM_init()
     PWM3LDS = 0x00;
     
     //Set Periods to 50 Hz (Normal Servo Frequency)
-    //500 kHz / 50 Hz = 620
+    //500 kHz / 50 Hz = 10,000
     PWM1PR = PWM_DEFAULT_FRQ_VALUE;
     PWM2PR = PWM_DEFAULT_FRQ_VALUE;
     PWM3PR = PWM_DEFAULT_FRQ_VALUE;

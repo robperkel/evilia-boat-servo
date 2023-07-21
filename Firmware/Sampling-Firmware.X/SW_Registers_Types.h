@@ -17,7 +17,7 @@ extern "C" {
         REG_DC1_H = 0x10, REG_DC1_L, REG_DC2_H, REG_DC2_L, REG_DC3_H, REG_DC3_L,
             REG_DC4_H, REG_DC4_L, REG_DC5_H, REG_DC5_L, REG_DC6_H, REG_DC6_L,
         REG_FRQ1_H = 0x20, REG_FRQ1_L, REG_FRQ2_H, REG_FRQ2_L, REG_FRQ3_H, REG_FRQ3_L,
-        REG_ANALOG_CONFIG = 0x30, REG_GAIN_CONFIG
+        REG_ANALOG_CONFIG = 0x30, REG_GAIN_CONFIG, REG_DAC2_OUTPUT
     } SWRegisterAddress;
     
     //Status Register Bitfield
@@ -45,7 +45,7 @@ extern "C" {
     
     //Sample Register Options
     typedef enum {
-        UNUSED = 0x00, ANALOG_INPUT1, ANALOG_INPUT2, ANALOG_VSS_INPUT
+        UNUSED = 0x00, ANALOG_INPUT1, ANALOG_INPUT2, ANALOG_VSS_INPUT, ANALOG_DAC2_INPUT
     } AnalogInput;
     
     //Averaging Configurations

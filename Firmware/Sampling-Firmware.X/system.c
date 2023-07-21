@@ -12,10 +12,11 @@
 #include "OPAMP.h"
 #include "TMR4.h"
 #include "FVR.h"
+#include "DAC.h"
 
 #include <stdbool.h>
 
-static bool WDTclear = true;
+static volatile bool WDTclear = true;
 static volatile bool statusError = false;
 
 //Initializes all HW Peripherals
@@ -54,6 +55,9 @@ void System_init(void)
     
     //Init the FVR
     FVR_init();
+    
+    //Init DAC2 (testing only)
+    DAC2_init();
     
     //Init the ADC
     ADCC_init();

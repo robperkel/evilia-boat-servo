@@ -9,6 +9,7 @@ extern "C" {
 #define ADC_AN1_INPUT 0b10000010
 #define ADC_AN2_INPUT 0b10001101
 #define ADC_VSS_INPUT 0b00111011
+#define ADC_DAC2_INPUT 0b00111010
 
 #include <stdint.h>
 #include <stdbool.h>

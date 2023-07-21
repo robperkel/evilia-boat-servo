@@ -34,6 +34,7 @@ This file contains the software-defined registers, bitfields and allowed values.
 | 0x25    | [FRQ3L](#frqxhfrqxl-registers) | Frequency of PWM5/6, Low Byte
 | 0x30    | [Analog Configure](#analog-configure-register) | Configures the ADC for Analog Input 1
 | 0x31    | [Gain Configure](#gain-configure-register) | Sets the OPAMP gain for Analog Input 1
+| 0x32    | [DAC2 Output](#dac2-output-register)
 | 0x50    | Firmware Update | Begins a firmware update operation
 | 0x51    | Firmware Unlock 1 | See note 6
 | 0x52    | Firmware Unlock 2 | See note 6
@@ -86,6 +87,7 @@ Note: "X" values are reserved.
 | 0x01  | Analog Input 1
 | 0x02  | Analog Input 2
 | 0x03  | VSS (Ground)
+| 0x04  | DAC2
 
 ### ADCH/ADCL Register
 
@@ -177,3 +179,7 @@ Gain Configuration
 - 0b0111 = 16
 
 For gain changes, some time is required for the output to stabilize. But, I<sup>2</sup>C is relatively slow, so there shouldn't be any timing issues with starting a conversion immediately following a gain change (assuming 100 kHz speed). 
+
+### DAC2 Output Register
+
+Sets the output voltage of DAC2. DAC2 uses the 1.024V FVR. The output is set by the formula: Vout = DATA/2^8 * 1.024V

@@ -10,6 +10,7 @@
             <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/self_test.c</file>
             <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/SW_Registers.c</file>
             <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/main.c</file>
+            <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/PWM.h</file>
             <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/FVR.h</file>
             <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/interrupts.h</file>
             <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/TMR4.h</file>
@@ -17,7 +18,9 @@
             <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/FVR.c</file>
             <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/interrupts.c</file>
             <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/OPAMP.h</file>
+            <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/DAC.c</file>
             <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/I2C_FSM.h</file>
+            <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/DAC.h</file>
             <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/TMR4.c</file>
             <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/OPAMP.c</file>
             <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/ADCC.h</file>
@@ -27,6 +30,7 @@
             <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/system.h</file>
             <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/GPIO.h</file>
             <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/GPIO.c</file>
+            <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/SW_Registers.h</file>
             <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/i2c_client.c</file>
             <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/GPIO_Macros.h</file>
             <file>file:/C:/Users/rober/Documents/Git%20Repos/evilia-boat-servo/Firmware/Sampling-Firmware.X/SW_Registers_Types.h</file>

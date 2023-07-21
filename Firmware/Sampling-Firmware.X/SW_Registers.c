@@ -7,6 +7,7 @@
 #include "TMR4.h"
 #include "ADCC.h"
 #include "OPAMP.h"
+#include "DAC.h"
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -67,6 +68,7 @@ bool Registers_setRegisterAddress(uint8_t addr)
         case REG_FRQ3_L:
         case REG_ANALOG_CONFIG:
         case REG_GAIN_CONFIG:
+        case REG_DAC2_OUTPUT:
         {
             isGood = true;
             break;
@@ -232,6 +234,11 @@ uint8_t Registers_getByte(void)
         case REG_GAIN_CONFIG:
         {
             rtnVal = OPAMP_getGainSettings();
+            break;
+        }
+        case REG_DAC2_OUTPUT:
+        {
+            rtnVal = DAC2_getValue();
             break;
         }
         default:
@@ -409,6 +416,11 @@ bool Registers_setByte(uint8_t val)
         case REG_GAIN_CONFIG:
         {
             OPAMP_setGainSettings(val);
+            break;
+        }
+        case REG_DAC2_OUTPUT:
+        {
+            DAC2_setValue(val);
             break;
         }
         default:

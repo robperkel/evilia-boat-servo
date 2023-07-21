@@ -1,6 +1,6 @@
 True,I2C,7 bit,0x43,Write,,"0x00",,,Select STATUS,Send
 True,I2C,7 bit,0x43,Read,,"1",,,Read STATUS,Send
-True,I2C,7 bit,0x43,Write,,"0x02, 0x03",,,Select SAMPLE,Send
+True,I2C,7 bit,0x43,Write,,"0x02, 0x04",,,Select SAMPLE,Send
 True,I2C,7 bit,0x43,Write,,"0x00",,,Select STATUS,Send
 True,I2C,7 bit,0x43,Read,,"1",,,Read STATUS,Send
 True,I2C,7 bit,0x43,Write,,"0x04",,,Select ADCH,Send
@@ -11,3 +11,11 @@ True,I2C,7 bit,0x43,Write,,"0x14, 0x03, 0xE8",,,SERVO3 PW 2ms,Send
 True,I2C,7 bit,0x43,Write,,"0x16, 0x02, 0xEE",,,SERVO4 PW 1.5ms,Send
 True,I2C,7 bit,0x43,Write,,"0x18, 0x03, 0xE8",,,SERVO5 PW 2ms,Send
 True,I2C,7 bit,0x43,Write,,"0x1A, 0x02, 0xEE",,,SERVO6 PW 1.5ms,Send
+True,I2C,7 bit,0x43,Write,,"0x10",,,Select SERVO1 PW,Send
+True,I2C,7 bit,0x43,Read,,"12",,,Read all Servo Parameters,Send
+True,I2C,7 bit,0x43,Write,,"0x20, 0x13, 0x88",,,SERVO1 FRQ 100 Hz,Send
+True,I2C,7 bit,0x43,Write,,"0x22, 0x09, 0xC4",,,SERVO2 FRQ 200 Hz,Send
+True,I2C,7 bit,0x43,Write,,"0x24, 0x13, 0x88",,,SERVO3 FRQ 100 Hz,Send
+True,I2C,7 bit,0x43,Write,,"0x20",,,Select SERVO1 FRQ,Send
+True,I2C,7 bit,0x43,Read,,"6",,,READ SERVOx FRQ,Send
+True,I2C,7 bit,0x43,Write,,"0x32, 0x20",,,,Send
