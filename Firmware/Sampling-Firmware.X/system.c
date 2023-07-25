@@ -118,11 +118,13 @@ void System_setGPIO(uint8_t state)
     {
         //Enable pump
         PUMP_EN_SetHigh();
+        TMR4_start();
     }
     else
     {
         //Disable pump
         PUMP_EN_SetLow();
+        TMR4_stop();
     }
     
     if (out.extLED)

@@ -3,15 +3,15 @@
   <executable name="dist/production/debug\Sampling-Firmware.X.debug.hex">
     <memory name="program">
       <units>bytes</units>
-      <length>65536</length>
-      <used>2029</used>
-      <free>63507</free>
+      <length>32768</length>
+      <used>5186</used>
+      <free>27582</free>
     </memory>
     <memory name="data">
       <units>bytes</units>
-      <length>4096</length>
-      <used>32</used>
-      <free>4064</free>
+      <length>2048</length>
+      <used>66</used>
+      <free>1982</free>
     </memory>
   </executable>
 </project>
