@@ -43,12 +43,18 @@ void GPIO_init()
         DEBUG1_LAT = LAT_LOW;
         
         //Analog Input 1 - RA2
-        //Analog Input 2 - RB5
+        //(CHANGED TO DIGITAL IN) Analog Input 2 - RB5
         TRISA2 = TRIS_INPUT;
-        TRISB5 = TRIS_INPUT;
+//        TRISB5 = TRIS_INPUT;
         
         ANSELA2 = ANSEL_ANALOG;
-        ANSELB5 = ANSEL_ANALOG;
+//        ANSELB5 = ANSEL_ANALOG;
+        
+        //Pump Run Bypass - RB5
+        PRIME_SW_TRIS = TRIS_INPUT;
+        PRIME_SW_ANSEL = ANSEL_DIGITAL;
+        PRIME_SW_WPU = WPU_ENABLED;
+        CLCIN0PPS = PRIME_SW_CLC_IN;
         
         //OPAMP Out - RC2
         //Note - Peripheral takes control of I/O once active

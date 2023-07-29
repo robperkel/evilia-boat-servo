@@ -13,6 +13,8 @@
 #include "TMR4.h"
 #include "FVR.h"
 #include "DAC.h"
+#include "CLKREF.h"
+#include "CLC.h"
 
 #include <stdbool.h>
 
@@ -25,6 +27,9 @@ void System_init(void)
 {
     //Init GPIO
     GPIO_init();
+    
+    //Init Clock Reference
+    CLKREF_init();
     
     //Calculate I2C Address on PoR
     uint8_t addr = I2C_BASE_ADDRESS;
@@ -76,6 +81,15 @@ void System_init(void)
     
     //Configure callback
     PUMP_TIMEOUT_SET_CALLBACK(&GPIO_Pump_Timeout_Callback);
+    
+    //Init the CLCs
+    CLCs_init();
+    
+    //Priming button released
+    CLC2_setRisingEdgeISR(&System_shutdownPumpForPriming);
+    
+    //Priming button pressed
+    CLC2_setFallingEdgeISR(&System_runPumpForPriming);
 }
 
 //This function indicates the Watchdog Timer (WDT) must be cleared
@@ -179,4 +193,16 @@ void System_clearError(void)
 bool System_getErrorStatus(void)
 {
     return statusError;
+}
+
+//Runs the pump to prime the system
+void System_runPumpForPriming(void)
+{
+    PUMP_EN_SetHigh();
+}
+
+//Stops the pump after priming
+void System_shutdownPumpForPriming(void)
+{
+    PUMP_EN_SetLow();
 }

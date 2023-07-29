@@ -45,6 +45,12 @@ extern "C" {
     //Returns the state of the error flag
     bool System_getErrorStatus(void);
     
+    //Runs the pump to prime the system
+    void System_runPumpForPriming(void);
+    
+    //Stops the pump after priming
+    void System_shutdownPumpForPriming(void);
+    
 #ifdef	__cplusplus
 }
 #endif

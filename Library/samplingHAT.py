@@ -67,7 +67,7 @@ class SamplingHatA:
 
     def readRegister(self, reg):
         resp = self.bus.read_i2c_block_data(self.addr, reg, 1)
-        print(list(resp))
+        return resp[0]
 
     def writeRegister(self, reg, data):
         self.bus.write_byte_data(self.addr, reg, data)
@@ -82,7 +82,41 @@ class SamplingHatA:
         self.writeRegister(SamplingHatA_Registers.LED_TIME, timeout)
 
     def startPump(self):
-        self.writeRegister(SamplingHatA_Registers.OUTPUT, 0xFF)
+        cVal = self.readRegister(SamplingHatA_Registers.OUTPUT)
+        cVal |= 0x80
+        self.writeRegister(SamplingHatA_Registers.OUTPUT, cVal)
+
+    def stopPump(self):
+        cVal = self.readRegister(SamplingHatA_Registers.OUTPUT)
+        cVal &= ~(0x80)
+        self.writeRegister(SamplingHatA_Registers.OUTPUT, cVal)
+
+    def getPumpState(self):
+        cVal = self.readRegister(SamplingHatA_Registers.OUTPUT)
+        cVal &= (0x80)
+        if (cVal != 0x00):
+            return True
+        return False
+
+    def turnOn_EXT_LED(self):
+        cVal = self.readRegister(SamplingHatA_Registers.OUTPUT)
+        cVal |= 0x04
+        self.writeRegister(SamplingHatA_Registers.OUTPUT, cVal)
+
+    def turnOff_EXT_LED(self):
+        cVal = self.readRegister(SamplingHatA_Registers.OUTPUT)
+        cVal &= ~(0x04)
+        self.writeRegister(SamplingHatA_Registers.OUTPUT, cVal)
+
+    def turnOn_DBG0(self):
+        cVal = self.readRegister(SamplingHatA_Registers.OUTPUT)
+        cVal |= 0x01
+        self.writeRegister(SamplingHatA_Registers.OUTPUT, cVal)
+
+    def turnOff_DBG0(self):
+        cVal = self.readRegister(SamplingHatA_Registers.OUTPUT)
+        cVal &= ~(0x01)
+        self.writeRegister(SamplingHatA_Registers.OUTPUT, cVal)
 
     def setServoPosition(self, index, value):
         regAddr = SamplingHatA_Registers.DC1H + ((index - 1) * 2)
@@ -109,14 +143,3 @@ class SamplingHatA:
         self.setServoPosition(4, self.max)
         self.setServoPosition(5, self.max)
         self.setServoPosition(6, self.max)
-
-
-obj = SamplingHatA(1, 0x43)
-obj.setMaxServoValue(900)
-obj.setPumpTimeout(12)
-obj.readRegister(SamplingHatA_Registers.PUMP_TIME)
-obj.setPumpTimeout(5)
-obj.setLEDTimeout(5)
-#obj.startPump()
-
-obj.closeAllServos()

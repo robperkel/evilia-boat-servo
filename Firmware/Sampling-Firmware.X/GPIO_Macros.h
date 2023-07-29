@@ -73,6 +73,14 @@ extern "C" {
 #define DEBUG0_Toggle() DEBUG0_LAT = ~DEBUG0_LAT
 #define DEBUG0_GetValue() DEBUG0_LAT
     
+//Pump Priming SW - RB5
+#define PRIME_SW_LAT LATB5
+#define PRIME_SW_TRIS TRISB5
+#define PRIME_SW_ANSEL ANSELB5
+#define PRIME_SW_WPU WPUB5
+#define PRIME_SW_CLC_IN 0b001101
+#define DEBUG0_GetValue() DEBUG0_LAT
+    
 //I2C Address I/O
     
 //ADDR1 - RB4

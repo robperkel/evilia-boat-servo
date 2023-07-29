@@ -17,6 +17,8 @@
         <itemPath>TMR4.h</itemPath>
         <itemPath>FVR.h</itemPath>
         <itemPath>DAC.h</itemPath>
+        <itemPath>CLKREF.h</itemPath>
+        <itemPath>CLC.h</itemPath>
       </logicalFolder>
       <itemPath>I2C_FSM.h</itemPath>
       <itemPath>SW_Registers.h</itemPath>
@@ -43,6 +45,8 @@
         <itemPath>TMR4.c</itemPath>
         <itemPath>FVR.c</itemPath>
         <itemPath>DAC.c</itemPath>
+        <itemPath>CLKREF.c</itemPath>
+        <itemPath>CLC.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
       <itemPath>I2C_FSM.c</itemPath>
